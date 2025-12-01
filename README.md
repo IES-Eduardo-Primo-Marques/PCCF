@@ -151,7 +151,9 @@ sudo apt install make pandoc \
 	     texlive-extra-utils \
 		 texlive-lang-spanish \
 		 texlive-latex-extra \
-		 texlive-fonts-extra
+		 texlive-fonts-extra \
+		 libreoffice \
+         poppler-utils
 
 sudo apt install python3-jinja2 \
 		 python3-box \
@@ -160,4 +162,35 @@ sudo apt install python3-jinja2 \
          python-pandas-doc \
          python3-pandas
 
+```
+
+## Contenedor
+
+Para simplificar el trabajo y la gestión de dependencias en diferentes equipos existen una serie de ficheros para crear un contenedor Docker y lanzar los scripts desde allí:
+
+```sh
+contenedor_build.sh
+contenedor_lanza.sh
+contenedor_limpia.sh
+docker-compose.yml
+Dockerfile
+```
+
+Para lanzar (diferentes modos):
+
+```bash
+# Sesión interactiva con bash (modo por defecto)
+./contenedor_lanza.sh
+
+# Ejecutar un comando específico y salir
+./contenedor_lanza.sh "make proyecto-daw"
+
+# Iniciar en segundo plano
+./contenedor_lanza.sh -d
+
+# Acceder con un comando específico
+./contenedor_lanza.sh --command "ls -la"
+
+# Mostrar ayuda
+./contenedor_lanza.sh --help
 ```
