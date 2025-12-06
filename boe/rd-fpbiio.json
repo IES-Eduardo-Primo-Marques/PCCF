@@ -410,7 +410,7 @@
             "CompetenciasTitulo": ["c", "d", "g", "h", "i", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
         },
         "3009": {
-            "nombre": "Ciències aplicades I",
+            "nombre": "Ciències aplicades 1",
             "creditos": "",
             "ResultadosAprendizaje": {
                 "RA01": {
@@ -529,7 +529,7 @@
             "CompetenciasTitulo": ["k", "l", "m", "n", "q", "r", "s", "t", "u", "v", "x", "y", "z"]
         },
         "3019": {
-            "nombre": "Ciències aplicades II",
+            "nombre": "Ciències aplicades 2",
             "creditos": "",
             "ResultadosAprendizaje": {
                 "RA01": {
