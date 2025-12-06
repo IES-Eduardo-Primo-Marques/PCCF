@@ -14,10 +14,12 @@ diferentes ciclos.
 
 | Siglas | Nombre Completo | Nivel |
 |--------|-----------------|-------|
+| IIO | Informática y Oficina | Grado Básico |
 | SMX    | Sistemas Microinformáticos y Redes | Grado Medio |
 | DAW 	 | Desarrollo de Aplicaciones Web | Grado Superior |
 | DAM    | Desarrollo de Aplicaciones Multiplataforma | Grado Superior |
 | ASIR   | Admnistración de Sistemas Informáticos y Redes | Grado Superior |
+| CEIABD | Curso de especialización de IA y BD | Curso de Especialización |
 
 ## Entorno y Desarrollo
 
@@ -128,6 +130,8 @@ mensajes de salida, ni el mismo formato (colores) ^_^.
 
 Se muestran algunos usages de `targets` a modo de ejemplo, pero lo mejor siempre : *Use the source, Luke!*:
 
+#### Opción 1: Usar el valor por defecto (SENIA):
+
 ```bash
 
 # Crea el PDF de PCCF de SMX
@@ -137,6 +141,27 @@ make proyecto-asir
 make proyecto-dam
 make proyecto-daw
 
+```
+
+#### Opción 2: Especificar un centro diferente:
+
+```bash
+make CENTRO_EDUCATIVO=MIESCUELA proyecto-smx
+make CENTRO_EDUCATIVO='COLEGIO XYZ' proyecto-dam
+```
+
+#### Opción 3: Usar en línea de comandos (persistente para la sesión):
+
+```bash
+export CENTRO_EDUCATIVO=NUEVOCENTRO
+make proyecto-ceiabd
+make proyecto-daw
+```
+
+### Opción 4: Ver ayuda:
+
+```bash
+make help
 ```
 
 ## Dependencias

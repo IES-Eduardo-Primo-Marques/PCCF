@@ -25,6 +25,16 @@ elif sys.argv[1] == "DAM":
     with open('./boe/rd-dam.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
 
+elif sys.argv[1] == "CEIABD":
+
+    with open('./boe/rd-ceiabd.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+elif sys.argv[1] == "FPBIIO":
+
+    with open('./boe/rd-fpbiio.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
 elif sys.argv[1] == "SMX":
 
     with open('./boe/rd-smx.json', 'r', encoding='utf-8') as f:

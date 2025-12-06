@@ -38,10 +38,6 @@ def get_hoja_label(hoja):
     if hoja.startswith("Programación de servicios y pro"): hoja="PSP"
     if hoja.startswith("Sistemas de gestión empresarial"): hoja="SGE"
 
-    
-    
-    
-
     # ASIR
     if hoja.startswith("Implantación de Siste"): hoja = "ISO"
     if hoja.startswith("Administración de Sistemas Oper"): hoja = "ASO"
@@ -52,5 +48,22 @@ def get_hoja_label(hoja):
     if hoja.startswith("Servicios de Red e I") : hoja = "SER"
     if hoja.startswith("Seguridad y Alt"): hoja = "SAD"
     if hoja.startswith("Implantación de Aplicaci"): hoja = "IAW"
-    
+
+    # CEIABD
+    if hoja.startswith("Models d"): hoja = "MIA"
+    if hoja.startswith("Sistemes d"): hoja = "SAA"
+    if hoja.startswith("Programació d"): hoja = "PIA"
+    if hoja.startswith("Sistemes de"): hoja = "SBD"
+    if hoja.startswith("Big Data"): hoja = "BDA"
+
+    # FPBIIO
+    if hoja.startswith("Montatge i manteniment"): hoja = "MME"
+    if hoja.startswith("Operacions auxiliars"): hoja = "OA"
+    if hoja.startswith("Ofimàtica"): hoja = "OAD"
+    if hoja.startswith("Instal·lació i manteniment"): hoja = "IMXTD"
+    if hoja.startswith("Ciències aplicades I"): hoja = "CA1"
+    if hoja.startswith("Ciències aplicades II"): hoja = "CA2"
+    if hoja.startswith("Comunicació i societat I"): hoja = "CS1"
+    if hoja.startswith("Comunicació i societat II"): hoja = "CS2"
+
     return hoja
