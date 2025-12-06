@@ -28,38 +28,24 @@ import jinja2
 
 # Cargar el JSON desde un archivo
 
-if sys.argv[1] == "DAW":
-
-    with open('./boe/rd-daw.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-elif sys.argv[1] == "DAM":
-
-    with open('./boe/rd-dam.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-elif sys.argv[1] == "CEIABD":
-
-    with open('./boe/rd-ceiabd.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-elif sys.argv[1] == "FPBIIO":
-
-    with open('./boe/rd-fpbiio.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-elif sys.argv[1] == "ASIR":
-
-    with open('./boe/rd-asir.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-
-elif sys.argv[1] == "SMX":
-
-    with open('./boe/rd-smx.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-else:
+if len(sys.argv) < 2:
     print(" * No se ha indicado Ciclo ")
     sys.exit(0)
+
+# Convertir el argumento a minúsculas
+ciclo = sys.argv[1].lower()
+nombre_archivo = f'./boe/rd-{ciclo}.json'
+
+try:
+    with open(nombre_archivo, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+except FileNotFoundError:
+    print(f" * No se encontró el archivo para el ciclo: {sys.argv[1]}")
+    print(f" * Archivo buscado: {nombre_archivo}")
+    sys.exit(1)
+except json.JSONDecodeError:
+    print(f" * Error al leer el archivo JSON: {nombre_archivo}")
+    sys.exit(1)
 
 data_box = Box(data)
 

@@ -6,144 +6,11 @@
 
 Pots fer servir alguna IA ([DeepSeek.com](https://www.deepseek.com/)) passant-li com a context el `json` d'un altre cicle i el `pdf` amb el currículum per a que emplene els valors del `json` però no alterar les claus. Inclús pots demanar que traduisca els valors al Valencià.
 
-### 2. Afegir el nou cicle al `Makefile`
-
-Agafar un fragment d'un altre cicle, fer una còpia i adaptar-lo al nou cicle, en este cas adaptem el Curs d'especialització d'IA I Big Data per a Grau bàsic d'Informàtica i Oficina:
-
-Original (ceiabd):
-
-```makefile
-proyecto-ceiabd: files proyecto-base
-
-	@echo " [ ${BLUE} Proyecto Curricular : CE IABD ${RESET}]"
-
-	@echo " ${LIGHTBLUE} Poblando desde CEIABD ${RESET}"
-	cp -r src_CEIABD/* temp/
-
-	@echo " ${LIGHTBLUE} Libro de las Programaciones de CEIABD ${RESET}"
-	./tools/json2excel.py CEIABD
-	@echo " ${LIGHTBLUE} Excel Generado para CEIABD ${RESET}"
-
-	@echo " ${LIGHTBLUE} Proyecto y Programaciones de CEIABD ${RESET}"
-	./tools/json2pccf.py CEIABD
-
-	@echo " ${LIGHTBLUE} Generando $(PDF_PATH)/PCCF_$(CENTRO_EDUCATIVO)_CEIABD.pdf ${RESET}"
-	@cd temp/ && pandoc --template $(TEMPLATE_TEX_PD) $(PANDOC_OPTIONS) -o $(PDF_PATH)/PCCF_$(CENTRO_EDUCATIVO)_CEIABD.pdf ./PCCF_*.md
-	@echo " ${LIGHTBLUE} PDF Generado para CEIABD ${RESET}"
-
-	@# Me dejo aqui el --verbose por si quiero apuntar algo mas fino en los errores.
-	@echo " ${LIGHTBLUE} Generando $(PDF_PATH)/Programaciones_$(CENTRO_EDUCATIVO)_CEIABD.pdf ${RESET}"
-	@cd temp/ && pandoc  --template $(TEMPLATE_TEX_PD) $(PANDOC_OPTIONS) -o $(PDF_PATH)/Programaciones_$(CENTRO_EDUCATIVO)_CEIABD.pdf ./PD_*.md
-	@echo " ${LIGHTBLUE} Programaciones Generadas para CEIABD ${RESET}"
-	@echo " ${LIGHTBLUE} Ahora recorro los diferentes modulos ${RESET}"
-	./tools/shell-progs-didacticas-standalone.sh CEIABD
-	@echo " ${LIGHTBLUE} [ Proyecto CEIABD Completado ] ${RESET}"
-```
-
-Adaptació (fpbiio):
-
-```makefile
-proyecto-fpbiio: files proyecto-base
-
-	@echo " [ ${BLUE} Proyecto Curricular : FPB IIO ${RESET}]"
-
-	@echo " ${LIGHTBLUE} Poblando desde FPBIIO ${RESET}"
-	cp -r src_FPBIIO/* temp/
-
-	@echo " ${LIGHTBLUE} Libro de las Programaciones de FPBIIO ${RESET}"
-	./tools/json2excel.py FPBIIO
-	@echo " ${LIGHTBLUE} Excel Generado para FPBIIO ${RESET}"
-
-	@echo " ${LIGHTBLUE} Proyecto y Programaciones de FPBIIO ${RESET}"
-	./tools/json2pccf.py FPBIIO
-
-	@echo " ${LIGHTBLUE} Generando $(PDF_PATH)/PCCF_$(CENTRO_EDUCATIVO)_FPBIIO.pdf ${RESET}"
-	@cd temp/ && pandoc --template $(TEMPLATE_TEX_PD) $(PANDOC_OPTIONS) -o $(PDF_PATH)/PCCF_$(CENTRO_EDUCATIVO)_FPBIIO.pdf ./PCCF_*.md
-	@echo " ${LIGHTBLUE} PDF Generado para FPBIIO ${RESET}"
-
-	@# Me dejo aqui el --verbose por si quiero apuntar algo mas fino en los errores.
-	@echo " ${LIGHTBLUE} Generando $(PDF_PATH)/Programaciones_$(CENTRO_EDUCATIVO)_FPBIIO.pdf ${RESET}"
-	@cd temp/ && pandoc  --template $(TEMPLATE_TEX_PD) $(PANDOC_OPTIONS) -o $(PDF_PATH)/Programaciones_$(CENTRO_EDUCATIVO)_FPBIIO.pdf ./PD_*.md
-	@echo " ${LIGHTBLUE} Programaciones Generadas para FPBIIO ${RESET}"
-	@echo " ${LIGHTBLUE} Ahora recorro los diferentes modulos ${RESET}"
-	./tools/shell-progs-didacticas-standalone.sh FPBIIO
-	@echo " ${LIGHTBLUE} [ Proyecto FPBIIO Completado ] ${RESET}"
-```
-
-Afegir el nou projecte també a l'apartat `help:`:
-
-```makefile
-# Regla para mostrar ayuda
-help:
-	@echo "Uso: make [CENTRO_EDUCATIVO=nombre_del_centro] <target>"
-	@echo ""
-	@echo "Targets disponibles:"
-	@echo "  proyecto-smx       Generar proyecto para SMX"
-	@echo "  proyecto-asir      Generar proyecto para ASIR"
-	@echo "  proyecto-daw       Generar proyecto para DAW"
-	@echo "  proyecto-dam       Generar proyecto para DAM"
-	@echo "  proyecto-ceiabd    Generar proyecto para CEIABD"
-	@echo "  proyecto-fpbiio    Generar proyecto para FPBIIO"
-	@echo "  clean              Limpiar archivos generados"
-	@echo "  files              Crear estructura de directorios"
-	@echo "  dependences        Instalar dependencias"
-	@echo ""
-	@echo "Ejemplos:"
-	@echo "  make proyecto-smx	# Usa 'SENIA' por defecto"
-	@echo "  make CENTRO_EDUCATIVO=MICENTRO proyecto-asir"
-	@echo "  make CENTRO_EDUCATIVO=IESEPM proyecto-dam"
-
-```
-
-### 3. Modificar el script `tools/json2excel.py`:
-
-Este script genera un excel generic a partir de la informació de l'arxiu `rd-fpbiio.json` que hem generat al primer punt.
-
-Hem de clonar les linees referents al CEIABD:
-
-```python
-elif sys.argv[1] == "CEIABD":
-
-    with open('./boe/rd-ceiabd.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-```
-
-I generar les noves per a FPBIIO:
-
-```python
-elif sys.argv[1] == "FPBIIO":
-
-    with open('./boe/rd-fpbiio.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-```
-
-### 4. Generar la plantilla de les PD's per als mòduls del nou cicle
+### 2. Generar la plantilla de les PD's per als mòduls del nou cicle
 
 A la carpeta `templates` hem de clonar l'arxiu `PCCF_PD_Plantilla_MODULO_CEIABD.md` i crear un per al nou cicle `PCCF_PD_Plantilla_MODULO_FPBIIO.md`
 
-### 5. Modificar el script `tools/json2pccf.py`:
-
-Este script genera les PD's per a cadascun del mòduls a partir de la informació de l'arxiu `rd-fpbiio.json` que hem generat al primer punt i de la plantilla `PCCF_PD_Plantilla_MODULO_FPBIIO.md` del punt anterior.
-
-Hem de clonar les liníes referents al CEIABD:
-
-```python
-elif sys.argv[1] == "CEIABD":
-
-    with open('./boe/rd-ceiabd.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-```
-
-I generar les noves per a FPBIIO:
-
-```python
-elif sys.argv[1] == "FPBIIO":
-
-    with open('./boe/rd-fpbiio.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-```
-
-### 6. Crear estructura de carpeta per al nou cicle `src_FPBIIO`:
+### 3. Crear estructura de carpeta per al nou cicle `src_FPBIIO`:
 
 Podem clonar la carpeta d'un altre cicle, per exemple `src_CEIABD` i anomenar-la `src_FPBIIO`:
 
@@ -160,7 +27,7 @@ Dins de la carpeta trobarem la següent estructura:
 
 > A més d'estos fitxers, s'hauran d'afegir tots els que siguen específics d'este cicle. Els arxius comuns es troben a la ruta `src/`. La ordenació dels fitxers és per ordre alfabètic, per això és important la numeració que apareix darrere de les inicials `PCCF_` o `PD_`.
 
-### 7. Llançar el projecte per primera vegada per a el nou cicle:
+### 4. Llançar el projecte per primera vegada per a el nou cicle:
 
 Llançar el make per al projecte del nou cicle:
 
@@ -168,7 +35,7 @@ Llançar el make per al projecte del nou cicle:
 ./contenedor_lanza.sh "make CENTRO_EDUCATIVO=IESEPM proyecto-fpbiio"
 ```
 
-### 8. Resultat final
+### 5. Resultat final
 
 Si el procés funciona correctament (i no es veu cap error pel mig) vorem al final:
 
@@ -187,7 +54,7 @@ I tindrem 3 noves carpetes (o si ja existien s'afegiran a elles els nous arxius)
 | `PDFS/PCCF_IESEPM_FPBIIO.pdf`           | PCCF preeliminar del cicle corresponent en PDF               |
 | `PDFS/Programaciones_IESEPM_FPBIIO.pdf` | PDF amb totes les PD's de tots els mòduls del cicle          |
 
-### 9. Afegir el nou cicle a l'script `pccf_utils.py`
+### 6. Afegir el nou cicle a l'script `pccf_utils.py`
 
 Al final de l'script, fem una còpia del que fa referència a CEIABD:
 
@@ -208,11 +75,15 @@ if hoja.startswith("Montatge i manteniment"): hoja = "MME"
 if hoja.startswith("Operacions auxiliars"): hoja = "OA"
 if hoja.startswith("Ofimàtica"): hoja = "OAD"
 if hoja.startswith("Instal·lació i manteniment"): hoja = "IMXTD"
-if hoja.startswith("Ciències aplicades I"): hoja = "CA1"
-if hoja.startswith("Ciències aplicades II"): hoja = "CA2"
-if hoja.startswith("Comunicació i societat I"): hoja = "CS1"
-if hoja.startswith("Comunicació i societat II"): hoja = "CS2"
+if hoja.startswith("Ciències aplicades 1"): hoja = "CA1"
+if hoja.startswith("Ciències aplicades 2"): hoja = "CA2"
+if hoja.startswith("Comunicació i societat 1"): hoja = "CS1"
+if hoja.startswith("Comunicació i societat 2"): hoja = "CS2"
 ```
+
+> Important:
+>
+> Com que els mòduls `Ciències aplicades I` i `Ciències aplicades II` comencen amb les mateixes lletres i es confonen, ho hem solucionat reanomenant el mòdul al rd-fpbiio per `Ciències aplicades 1` i `Ciències aplicades 2` respectivament. El mateix per als mòduls de `Comunicació i societat I i II`.
 
 ## Procediment per a generar correctament les PD's i PCCF de cada cicle
 
