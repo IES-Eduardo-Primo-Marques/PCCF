@@ -2,8 +2,6 @@
 title: PCCF - Curs d'especialització de Intel·ligència Artificial i Big Data
 subtitle: "Curs 2025-2026"
 author: Departament d'Informàtica
-header-includes: |
-  \renewcommand{\contentsname}{Índx}
 lang: ca-ES
 keywords: [CEIABD]
 abstract: |

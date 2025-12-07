@@ -2,8 +2,8 @@
 
 ### Competencias Professionals
 
-| Codi | Competència | Pes (%) |
-|--------|-------------|---------:|
+| Codi | Competència                                                                                 | Pes (%) |
+|--------|-------------------------------------------------------------------------------------------|---------:|
 | a | Aplicar sistemes d'Intel·ligència Artificial per identificar noves formes d'interacció en els negocis que millorin la productivitat. | 7,69% |
 | b | Desenvolupar i implementar sistemes d'Intel·ligència Artificial que facilitin la presa de decisions àgils dins d'un negoci gestionant i explotant dades massives. | 7,69% |
 | c | Gestionar la transformació digital necessària en les organitzacions per a la consecució de l'eficiència empresarial mitjançant el tractament de dades. | 7,69% |
@@ -20,8 +20,8 @@
 
 ### Competencias per a la ocupabilitat
 
-| Codi | Competència | Pes (%) |
-|--------|-------------|---------:|
+| Codi | Competència                                                                                 | Pes (%) |
+|--------|-------------------------------------------------------------------------------------------|---------:|
 | n | Adaptar-se a les noves situacions laborals, mantenint actualitzats els coneixements científics, tècnics i tecnològics relatius al seu entorn professional, gestionant la seva formació i els recursos existents en l'aprenentatge al llarg de la vida i utilitzant les tecnologies de la informació i la comunicació. | 14,29% |
 | ny | Resoldre situacions, problemes o contingençes amb iniciativa i autonomia en l'àmbit de la seva competència, amb creativitat, innovació i esperit de millora en el treball personal i en el dels membres de l'equip. | 14,29% |
 | o | Organitzar i coordinar equips de treball amb responsabilitat, supervisant el desenvolupament del mateix, mantenint relacions fluides i assumint el lideratge, així com aportant solucions als conflictes grupals que es presentin. | 14,29% |
