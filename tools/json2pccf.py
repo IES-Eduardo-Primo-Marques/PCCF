@@ -42,6 +42,28 @@ os.makedirs(dir_ciclo,exist_ok=True)
 # Convertir el diccionario a un objeto Box
 data_box = Box(data)
 
+# Generar fichero con las Competencias del Ciclo a partir de plantilla Jinja
+try:
+    templateLoader = jinja2.FileSystemLoader(searchpath="./templates/")
+    templateEnv = jinja2.Environment(loader=templateLoader)
+    TEMPLATE_COMP = "PCCF_Competencias_Ciclo.md"
+    template = templateEnv.get_template(TEMPLATE_COMP)
+    output_comp = template.render(
+        ciclo=s_ciclo,
+        competencias_profesionales=data_box.CompetenciasProfesionales,
+        competencias_sociales=data_box.CompetenciasSociales,
+        cpps=data_box.CompetenciasProfesionalesPersonalesSociales,
+    )
+    comp_file = os.path.join(dir_ciclo, f"PCCF_Competencias_{s_ciclo}.md")
+    with open(comp_file, "w", encoding="utf-8") as fc:
+        fc.write(output_comp)
+    print(f" * PCCF: fichero de competencias generado: {comp_file}")
+except jinja2.TemplateNotFound:
+    print(f" * PCCF: plantilla {TEMPLATE_COMP} no encontrada, se omite generación de competencias")
+except Exception as e:
+    print(f" * PCCF: error al generar fichero de competencias: {e}")
+
+
 
 
 for codigo in data_box.ModulosProfesionales:
