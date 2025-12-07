@@ -3,7 +3,7 @@ title: Programació Didàctica - {{modulo.nombre}}
 subtitle: "Curs 2025-2026"
 author: Departament d'Informàtica
 header-includes: |
-lang: es-ES
+lang: ca-ES
 keywords: []
 titlepage: true,
 page-background: "../../rsrc/backgrounds/bg_EPM.pdf"
