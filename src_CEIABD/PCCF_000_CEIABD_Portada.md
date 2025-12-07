@@ -6,9 +6,12 @@ header-includes: |
 lang: es-ES
 keywords: [CEIABD]
 abstract: |
-          Projecte Curricular del Curs d'especialització de Intel·ligència Artificial i Big Data 
-          Impartit a l'IES Eduardo Primo Marqués.
+          Projecte Curricular del Curs d'especialització de Intel·ligència Artificial i Big Data
+
+          Impartit a l'IES Eduardo Primo Marqués
+
           Carlet (València)
+
           Curs 2025-2026
 titlepage: true,
 page-background: "../rsrc/backgrounds/bg_EPM.pdf"
@@ -22,4 +25,3 @@ titlepage-background: "../rsrc/backgrounds/pccf_EPM.pdf"
 \newpage
 
 \tableofcontents
-

@@ -16,7 +16,7 @@ CENTRO_EDUCATIVO ?= SENIA
 
 # Templates 
 TEMPLATE_TEX_PD="../rsrc/templates/eisvogel.latex"
-PANDOC_OPTIONS="-V fontsize=12pt -V mainfont="../rsrc/sorts-mill-goudy/OFLGoudyStM.otf" --pdf-engine=xelatex"
+PANDOC_OPTIONS="-V fontsize=12pt -V mainfont="../rsrc/sorts-mill-goudy/OFLGoudyStM.otf" -V toc-title="Índex" --pdf-engine=xelatex"
 
 # PDFS
 PDF_PATH:=$(shell readlink -f PDFS)
