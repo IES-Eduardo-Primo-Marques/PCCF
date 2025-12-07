@@ -1,13 +1,11 @@
 \newpage
 
-# Marco Normativo Específico para el Ciclo de DAM 
+# Marc Normatiu Específic per al CE d'IA i BD
 
-El Marco Normativo vigente que se ha tenido en cuenta para el desarrollo del proyecto curricular 
-está formado por los siguientes documentos:
+El Marc Normatiu vigent que s'ha tingut en compte per al desenvolupament del projecte curricular està format pels documents següents:
 
-| Nombre | Descripción |
+| Nom | Descripció |
 |-------- | -------------|
-| [RD 500/2024](https://www.boe.es/eli/es/rd/2024/05/21/500) | Modificación del Título de Grado Superior |
-| [Real Decreto 405/2023, de 29 de mayo](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-13221) | Titulo de DAM y DAW y enseñanzas mínima.|
-
+| [Reial Decret 279/2021, de 20 d’abril](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2021-7686) | pel qual s'estableix el Curs d'especialització en Intel·ligència Artificial i Big Data i es fixen els aspectes bàsics del currículum. |
+| [Reial Decret 497/2024, de 21 de maig](https://www.boe.es/boe/dias/2024/05/28/pdfs/BOE-A-2024-10682.pdf) | pel qual es modifiquen determinats reials decrets pels quals s' estableixen, en l' àmbit de la Formació Professional, cursos d' especialització de grau mitjà i superior i es fixen els seus ensenyaments mínims. |
 
