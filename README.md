@@ -12,6 +12,8 @@ diferentes ciclos.
 
 ## Ciclos Formativos
 
+### Familia de Informática:
+
 | Siglas | Nombre Completo | Nivel |
 |--------|-----------------|-------|
 | IIO | Informática y Oficina | Grado Básico |
@@ -20,6 +22,15 @@ diferentes ciclos.
 | DAM    | Desarrollo de Aplicaciones Multiplataforma | Grado Superior |
 | ASIR   | Admnistración de Sistemas Informáticos y Redes | Grado Superior |
 | CEIABD | Curso de especialización de IA y BD | Curso de Especialización |
+
+### Familia de Servicios a la comunidad:
+
+| Siglas | Nombre Completo | Nivel |
+|--------|-----------------|-------|
+| APD | Atención a Personas en Situación de Dependencia | Grado Medio |
+| EI    | Educación Infantil | Grado Superior |
+| IS 	 | Integración Social | Grado Superior |
+
 
 ## Entorno y Desarrollo
 
@@ -164,6 +175,35 @@ make proyecto-daw
 make help
 ```
 
+```bash
+Targets disponibles:
+  Familia INF:
+    proyecto-smx       Generar proyecto para SMX
+    proyecto-asir      Generar proyecto para ASIR
+    proyecto-daw       Generar proyecto para DAW
+    proyecto-dam       Generar proyecto para DAM
+    proyecto-ceiabd    Generar proyecto para CEIABD
+    proyecto-fpbiio    Generar proyecto para FPBIIO
+  Familia SCO:
+    proyecto-apd       Generar proyecto para APD
+    proyecto-ei        Generar proyecto para EI
+    proyecto-is        Generar proyecto para IS
+  Conjunto:
+    todos              Generar todos los proyectos
+    todos-inf          Generar todos los proyectos INF
+    todos-sco          Generar todos los proyectos SCO
+    clean              Limpiar archivos generados
+    files              Crear estructura de directorios
+    dependences        Instalar dependencias
+
+Ejemplos:
+  make proyecto-smx                 # Usa 'SENIA' por defecto
+  make proyecto-asir                # Genera solo ASIR
+  make todos                        # Genera todos los ciclos
+  make CENTRO_EDUCATIVO=MIESCUELA proyecto-dam
+  make CENTRO_EDUCATIVO=IESEPM todos
+```
+
 ## Dependencias
 
 Para instalar las dependencias necesarias, se adjunta una serie de comandos par su ejecución en sistemas basados en Debian.
@@ -208,7 +248,7 @@ Para lanzar (diferentes modos):
 ./contenedor_lanza.sh
 
 # Ejecutar un comando específico y salir
-./contenedor_lanza.sh "make proyecto-daw"
+./contenedor_lanza.sh "make CENTRO_EDUCATIVO=IESEPM proyecto-daw"
 
 # Iniciar en segundo plano
 ./contenedor_lanza.sh -d

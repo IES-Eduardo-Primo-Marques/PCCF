@@ -28,13 +28,16 @@ import jinja2
 
 # Cargar el JSON desde un archivo
 
-if len(sys.argv) < 2:
-    print(" * No se ha indicado Ciclo ")
+if len(sys.argv) < 3:
+    print(" * No se ha indicado Ciclo y Familia ")
+    print(f" * Uso: {sys.argv[0]} <ciclo> <familia>")
+    print(" * Ejemplo: ./json2excel.py ASIR INF")
     sys.exit(0)
 
 # Convertir el argumento a minúsculas
 ciclo = sys.argv[1].lower()
-nombre_archivo = f'./boe/rd-{ciclo}.json'
+familia = sys.argv[2].upper()
+nombre_archivo = f'./boe_{familia}/rd-{ciclo}.json'
 
 try:
     with open(nombre_archivo, 'r', encoding='utf-8') as f:

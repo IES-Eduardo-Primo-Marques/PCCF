@@ -21,8 +21,10 @@ PANDOC_OPTIONS="-V fontsize=12pt -V mainfont="../rsrc/sorts-mill-goudy/OFLGoudyS
 # PDFS
 PDF_PATH:=$(shell readlink -f PDFS)
 
-# Lista de ciclos disponibles
-CICLOS = smx asir daw dam ceiabd fpbiio
+# Lista de ciclos disponibles por familia
+CICLOS_INF = smx asir daw dam ceiabd fpbiio
+CICLOS_SCO = apd ei is
+CICLOS_ALL = $(CICLOS_INF) $(CICLOS_SCO)
 
 # RULES
 
@@ -53,25 +55,30 @@ files:
 
 proyecto-base: files
 	@echo " [${BLUE} * Poblando el Proyecto Base ${RESET}"
-	cp -r src/* temp/
+	# Se copiará el contenido base según la familia del ciclo específico
 
 # Regla patrón para todos los ciclos
 proyecto-%: files proyecto-base
 	@$(eval CICLO=$(subst proyecto-,,$@))
 	@$(eval CICLO_UPPER=$(shell echo $(CICLO) | tr '[:lower:]' '[:upper:]'))
+	@$(eval FAMILIA=$(if $(filter $(CICLO),$(CICLOS_INF)),INF,SCO))
 	
-	@echo " [ ${BLUE} Proyecto Curricular : $(CICLO_UPPER) ${RESET}]"
-	@echo " ${LIGHTBLUE} Poblando desde $(CICLO_UPPER) ${RESET}"
+	@echo " [ ${BLUE} Proyecto Curricular : $(CICLO_UPPER) (Familia $(FAMILIA)) ${RESET}]"
+	@echo " ${LIGHTBLUE} Poblando base desde src_$(FAMILIA) ${RESET}"
 	
+	# Copiar contenido base de la familia
+	cp -r src_$(FAMILIA)/* temp/
+	
+	@echo " ${LIGHTBLUE} Poblando específico desde src_$(FAMILIA)_$(CICLO_UPPER) ${RESET}"
 	# Copiar archivos específicos del ciclo
-	cp -r src_$(CICLO_UPPER)/* temp/
+	cp -r src_$(FAMILIA)_$(CICLO_UPPER)/* temp/
 	
 	@echo " ${LIGHTBLUE} Libro de las Programaciones de $(CICLO_UPPER) ${RESET}"
-	./tools/json2excel.py $(CICLO_UPPER)
+	./tools/json2excel.py $(CICLO_UPPER) $(FAMILIA)
 	@echo " ${LIGHTBLUE} Excel Generado para $(CICLO_UPPER) ${RESET}"
 	
 	@echo " ${LIGHTBLUE} Fuentes de las Programaciones de $(CICLO_UPPER) ${RESET}"
-	./tools/json2pccf.py $(CICLO_UPPER)
+	./tools/json2pccf.py $(CICLO_UPPER) $(FAMILIA)
 	
 	@echo " ${LIGHTBLUE} Proyecto de $(CICLO_UPPER) ${RESET}"
 	@cd temp/ && pandoc --template $(TEMPLATE_TEX_PD) $(PANDOC_OPTIONS) -o $(PDF_PATH)/PCCF_$(CENTRO_EDUCATIVO)_$(CICLO_UPPER).pdf ./PCCF_*.md
@@ -87,24 +94,40 @@ proyecto-%: files proyecto-base
 	@echo " ${LIGHTBLUE} [ Proyecto $(CICLO_UPPER) Completado ] ${RESET}"
 
 # Target para generar todos los ciclos
-todos: $(addprefix proyecto-,$(CICLOS))
+todos: $(addprefix proyecto-,$(CICLOS_ALL))
 	@echo " ${LIGHTGREEN} [ Todos los proyectos generados ] ${RESET}"
+
+# Target para generar solo familia INF
+todos-inf: $(addprefix proyecto-,$(CICLOS_INF))
+	@echo " ${LIGHTGREEN} [ Todos los proyectos INF generados ] ${RESET}"
+
+# Target para generar solo familia SCO
+todos-sco: $(addprefix proyecto-,$(CICLOS_SCO))
+	@echo " ${LIGHTGREEN} [ Todos los proyectos SCO generados ] ${RESET}"
 
 # Regla para mostrar ayuda
 help:
 	@echo "Uso: make [CENTRO_EDUCATIVO=nombre_del_centro] <target>"
 	@echo ""
 	@echo "Targets disponibles:"
-	@echo "  proyecto-smx       Generar proyecto para SMX"
-	@echo "  proyecto-asir      Generar proyecto para ASIR"
-	@echo "  proyecto-daw       Generar proyecto para DAW"
-	@echo "  proyecto-dam       Generar proyecto para DAM"
-	@echo "  proyecto-ceiabd    Generar proyecto para CEIABD"
-	@echo "  proyecto-fpbiio    Generar proyecto para FPBIIO"
-	@echo "  todos              Generar todos los proyectos"
-	@echo "  clean              Limpiar archivos generados"
-	@echo "  files              Crear estructura de directorios"
-	@echo "  dependences        Instalar dependencias"
+	@echo "  Familia INF:"
+	@echo "    proyecto-smx       Generar proyecto para SMX"
+	@echo "    proyecto-asir      Generar proyecto para ASIR"
+	@echo "    proyecto-daw       Generar proyecto para DAW"
+	@echo "    proyecto-dam       Generar proyecto para DAM"
+	@echo "    proyecto-ceiabd    Generar proyecto para CEIABD"
+	@echo "    proyecto-fpbiio    Generar proyecto para FPBIIO"
+	@echo "  Familia SCO:"
+	@echo "    proyecto-apd       Generar proyecto para APD"
+	@echo "    proyecto-ei        Generar proyecto para EI"
+	@echo "    proyecto-is        Generar proyecto para IS"
+	@echo "  Conjunto:"
+	@echo "    todos              Generar todos los proyectos"
+	@echo "    todos-inf          Generar todos los proyectos INF"
+	@echo "    todos-sco          Generar todos los proyectos SCO"
+	@echo "    clean              Limpiar archivos generados"
+	@echo "    files              Crear estructura de directorios"
+	@echo "    dependences        Instalar dependencias"
 	@echo ""
 	@echo "Ejemplos:"
 	@echo "  make proyecto-smx                 # Usa 'SENIA' por defecto"
