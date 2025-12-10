@@ -29,19 +29,29 @@ def generar_tabla_markdown(strings,hoja_orig):
         
         print("## "+hoja_orig, file=fichero)
         print("\n\n", file=fichero)
-        print("| RA       | Descripción |", file=fichero)
-        print("|----------|-------------|", file=fichero)
+        
+        # Verificar si hay datos válidos (excluyendo "None.")
+        datos_validos = []
         for s in strings:
-            # Separar el código (ej: "RA06.") del resto del texto
-            
             partes = s.split('.', 1)
             codigo = partes[0] + '.'
-            descripcion = partes[1] if len(partes) > 1 else ""
-            
-            if codigo == "None.": 
-                pass
-            else:
+            if codigo != "None.":
+                datos_validos.append(s)
+        
+        # Si no hay datos válidos, mostrar mensaje
+        if not datos_validos:
+            print("No s'ha definit cap RA d'este mòdul per a la Formació en empresa", file=fichero)
+        else:
+            # Generar tabla normal
+            print("| RA       | Descripción |", file=fichero)
+            print("|----------|-------------|", file=fichero)
+            for s in datos_validos:
+                # Separar el código (ej: "RA06.") del resto del texto
+                partes = s.split('.', 1)
+                codigo = partes[0]  # Sin punto final
+                descripcion = partes[1] if len(partes) > 1 else ""
                 print(f"| {codigo.ljust(8)} | {descripcion} |", file=fichero)
+        
         print("\n\n\n",file=fichero)
 
 # Ejemplo de uso:
