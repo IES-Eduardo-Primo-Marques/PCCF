@@ -2,6 +2,15 @@
 
 Notes per a continuar en un altre ordinador. Quan una tasca s'acabe, s'esborra d'ací; quan no en quede cap, s'esborra el fitxer i la línia que l'enllaça des de `CLAUDE.md`.
 
+## 2026-10-19 · Panel de control `programacions/5_panel/panel.html` — FET, SENSE COMMIT
+
+Vore `AGENTS.md` → «Panel de control». Provat en local amb un arbre de prova (DAM, SMX, EI) i `pccf_sync_poller.py --once`; no s'ha provat al contenidor.
+
+1. Commit + push quan l'usuari ho diga, i tornar a desplegar l'stack (canvien `docker-entrypoint.sh`, amb els logs a `temp/logs/`, i `docker-compose.portainer.yml`, amb el bind mount de `panel_config.json`).
+2. Comprovar a `docker logs pccf` que arranca bé i que apareix «panel actualitzat»; que `5_panel/panel.html` arriba a OneDrive i s'obri amb doble clic; i que no es torna a pujar a cada passada (només amb canvis o cada 30 min).
+0. **Abans de desplegar**, crear al servidor `/docker/pccf/panel_config.json` (copiar `panel_config.example.json` del repo). Si no existix, Docker en crea un directori: el panel funciona igual però sense configuració.
+3. Posar a eixe fitxer `data_limit_pd` quan hi haja data límit de les PD, i revisar `objectiu_fe` (SMX/DAM 200/380 el 2026-27 i 200/300 el 2027-28, segons la proposta de FE). No cal redesplegar.
+
 ## 2026-10-16 · RA/CE (0020 d'EI/IS/ISSEMI i FPBIIO) i Projecte intermodular dividit — FETS, AMB COMMIT I PUSH
 
 Els canvis ja són a `main` (commit i push del 2026-10-16). Falta posar-los en producció i fer els passos següents.
@@ -25,19 +34,8 @@ Els canvis ja són a `main` (commit i push del 2026-10-16). Falta posar-los en p
 
 ### Passos pendents
 
-1. Tornar a desplegar l'stack de Portainer perquè agafe el commit.
-2. **Avisar ja els docents del Projecte intermodular de 2n de DAM, EI, IS i ISSEMI**: el mòdul és de 100 h, no de 135/134. Quan es regenere el llibre, la fulla `PI` conserva el que han posat, però si les hores sumen 135 l'Excel donarà la incidència «el mòdul té 100 h» i les hauran de redistribuir.
-3. A l'Exec Console de Portainer, amb els llibres tancats a Excel Online. Primer en simulació; si tot va bé, la mateixa ordre amb `--aplica`:
-
-   ```
-   python3 tools/regenera_llibre.py EI SCO --root /home/PCCF/pccf_sync --regenera PA --pd
-   python3 tools/regenera_llibre.py IS SCO --root /home/PCCF/pccf_sync --regenera PA --pd
-   python3 tools/regenera_llibre.py ISSEMI SCO --root /home/PCCF/pccf_sync --regenera PA --pd
-   python3 tools/regenera_llibre.py DAM INF --root /home/PCCF/pccf_sync --pd
-   ```
-   - Ha d'eixir `PA REGENERADA` (EI, IS, ISSEMI), `PI1 NOVA` i `PI conservada`, la resta de fulles «conservada», i la PD del PI amb «hores 135 → 100» (134 → 100 a IS).
-   - Si s'atura per una fulla `PI` amb RA/CE antics, afegeix `PI` a `--regenera` només si el docent no l'ha omplida.
-   - Les còpies es guarden a `temp/backups_llibres/`, dins del contenidor, i es perden en tornar a desplegar. SharePoint també guarda l'historial de versions.
+- **Fet el 2026-10-16:** desplegat a Portainer i `regenera_llibre.py --pd --aplica` a EI, IS, ISSEMI (`--regenera PA`), DAM, APD i SMX. Totes les fulles conservades; `PI1` nova i buida; PD del PI a 100 h, del 0020 amb la taula de RA nova, d'Anglés 68 → 67 (EI, DAM, SMX) i SMX 0222 133 → 134. APD perd 5 fulles buides (Hoja1-5). Còpies a `/home/PCCF/temp/backups_llibres/*_20261016-19*` (es perden en tornar a desplegar). IS i APD es van haver de tornar a regenerar: algú els tenia oberts a Excel Online, OneDrive va apartar la nostra versió com a safeBackup i va baixar la del núvol; regenerar de nou des d'eixa versió (i esborrar el safeBackup) conserva el que hi havia escrit el docent. Verificat: els 6 llibres al núvol, `PA` d'EI/IS/APD amb els 4 RA del BOE. Queda FPBIIO (punt 5).
+2. **Avisar ja els docents del Projecte intermodular de 2n de DAM, EI, IS i ISSEMI**: el mòdul és de 100 h, no de 135/134. La fulla `PI` conserva el que havien posat; si les hores sumen 135, l'Excel donarà la incidència «el mòdul té 100 h» i les hauran de redistribuir.
 4. Crear la PD de la part de 1r del PI (no sobreescriu cap PD ni llibre existent):
 
    ```

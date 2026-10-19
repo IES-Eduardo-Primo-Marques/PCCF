@@ -36,6 +36,21 @@ if [ ! -f "$PCCF_ONEDRIVE_CONFDIR/refresh_token" ]; then
     PCCF_SYNC_ENABLED=0
 fi
 
+# Logs per al panel de Programacions (tools/panel_pccf.py, pestanyes Log i
+# Sincronització): la sortida del client onedrive de PCCF i del seu poller es
+# duplica a temp/logs/ amb l'hora davant de cada línia (onedrive no la porta).
+# docker logs continua rebent-ho tot igual. El panel retalla els fitxers per mida.
+LOG_DIR=/home/PCCF/temp/logs
+mkdir -p "$LOG_DIR"
+amb_log() {
+    local fitxer="$1" linia
+    while IFS= read -r linia || [ -n "$linia" ]; do
+        printf '%s\n' "$linia"
+        # Un error d'escriptura del log no ha d'aturar el procés que hi ha davant.
+        printf '%(%Y-%m-%d %H:%M:%S)T %s\n' -1 "$linia" 2>/dev/null >> "$fitxer" || true
+    done
+}
+
 # Symlinks perquè tools/report_memories.py i tools/compilar_memories.py trobin
 # les dades sincronitzades on ja les esperen (memories_{ESOBAT,FP}/{DEPART}/).
 ln -sfn "$MEMORIES_SYNC_ROOT/$MEMORIES_ESOBAT_SUBPATH" /home/PCCF/memories_ESOBAT
@@ -70,7 +85,7 @@ if [ "$PCCF_SYNC_ENABLED" = "1" ]; then
         onedrive --confdir="$PCCF_ONEDRIVE_CONFDIR" --monitor --monitor-interval=300 \
             || echo "onedrive --monitor (PCCF) ha fallat, reintentant en 30s..."
         sleep 30
-    done &
+    done 2>&1 | amb_log "$LOG_DIR/onedrive_pccf.log" &
     PIDS+=("$!")
 
     echo "Engegant el poller de compilació automàtica de PCCF (sync-root=$PCCF_SYNC_ROOT/$PCCF_SUBPATH)..."
@@ -78,7 +93,8 @@ if [ "$PCCF_SYNC_ENABLED" = "1" ]; then
     # per a PCCF (auto-compila) i programacions/ per a PD (report only, manual).
     # Dins del sync-root hi viuen: pccf/, programacions/, 0_report_pccf/ i
     # 1_esborrany_pccf/.
-    python3 /home/PCCF/tools/pccf_sync_poller.py --sync-root "$PCCF_SYNC_ROOT/$PCCF_SUBPATH" &
+    python3 -u /home/PCCF/tools/pccf_sync_poller.py --sync-root "$PCCF_SYNC_ROOT/$PCCF_SUBPATH" 2>&1 \
+        | amb_log "$LOG_DIR/pccf_poller.log" &
     PIDS+=("$!")
 fi
 

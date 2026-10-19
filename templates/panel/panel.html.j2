@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de Programacions</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --text: #1d2330; --muted: #667085; --line: #e3e6eb; --hover: #f0f2f5;
+  --verd: #1f9d55; --verd-bg: #e3f6ea; --blau: #2f6fdb; --blau-bg: #e6eefc; --groc: #b7791f; --groc-bg: #fdf3dc;
+  --gris: #8a94a6; --gris-bg: #eef0f3; --roig: #d64545; --roig-bg: #fde8e8; --accent: #2f6fdb;
+  --shadow: 0 6px 24px rgba(16,24,40,.14);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b; --panel: #1a1f27; --text: #e6e9ef; --muted: #98a2b3; --line: #2b323d; --hover: #222833;
+    --verd: #3ccf7d; --verd-bg: #173525; --blau: #6c9cf5; --blau-bg: #1b2a45; --groc: #e9b44c; --groc-bg: #3a2e14;
+    --gris: #8a94a6; --gris-bg: #262c36; --roig: #f07070; --roig-bg: #3d1d1f; --accent: #6c9cf5;
+    --shadow: 0 6px 24px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151b; --panel: #1a1f27; --text: #e6e9ef; --muted: #98a2b3; --line: #2b323d; --hover: #222833;
+  --verd: #3ccf7d; --verd-bg: #173525; --blau: #6c9cf5; --blau-bg: #1b2a45; --groc: #e9b44c; --groc-bg: #3a2e14;
+  --gris: #8a94a6; --gris-bg: #262c36; --roig: #f07070; --roig-bg: #3d1d1f; --accent: #6c9cf5;
+  --shadow: 0 6px 24px rgba(0,0,0,.5);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 16px; }
+header.top { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+header.top h1 { font-size: 20px; margin: 0; }
+.meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.meta b { color: var(--text); font-weight: 600; }
+.stale { color: var(--roig); font-weight: 600; }
+.banners { display: grid; gap: 8px; margin-bottom: 12px; }
+.banner { border-radius: 8px; padding: 8px 12px; border: 1px solid var(--line); background: var(--panel); }
+.banner.roig { background: var(--roig-bg); border-color: transparent; }
+.banner.groc { background: var(--groc-bg); border-color: transparent; }
+.banner.blau { background: var(--blau-bg); border-color: transparent; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.kpi .v { font-size: 24px; font-weight: 700; }
+.kpi .l { color: var(--muted); font-size: 12px; }
+.kpi.verd .v { color: var(--verd); } .kpi.groc .v { color: var(--groc); } .kpi.gris .v { color: var(--gris); }
+.kpi.roig .v { color: var(--roig); } .kpi.blau .v { color: var(--blau); }
+nav.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+nav.tabs button { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 8px 12px; font: inherit; cursor: pointer; }
+nav.tabs button.on { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+nav.tabs .n { background: var(--roig); color: #fff; border-radius: 9px; padding: 0 6px; font-size: 11px; margin-left: 4px; }
+html.js section.tab { display: none; } html.js section.tab.on { display: block; }
+section.tab > h2 { font-size: 16px; margin: 4px 0 10px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 12px; }
+.toolbar input[type=search] { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--text); min-width: 220px; font: inherit; }
+.toolbar button, .toolbar select { padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--text); cursor: pointer; font: inherit; }
+.chipf { display: inline-flex; gap: 4px; align-items: center; cursor: pointer; user-select: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: 12px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; }
+.dot.verd { background: var(--verd); } .dot.blau { background: var(--blau); } .dot.groc { background: var(--groc); }
+.dot.gris { background: var(--gris); } .dot.roig { background: var(--roig); }
+.dot.compila { background: transparent; border: 2px dashed var(--accent); }
+details.n1, details.n2, details.n3 { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 8px; }
+details.n2 { background: transparent; border-radius: 8px; margin: 6px 10px; }
+details.n3 { background: transparent; border: 0; border-top: 1px dashed var(--line); border-radius: 0; margin: 0 10px; }
+summary { cursor: pointer; padding: 9px 12px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "▸"; color: var(--muted); width: 10px; transition: transform .15s; }
+details[open] > summary::before { transform: rotate(90deg); }
+summary .tt { font-weight: 600; } summary .sub { color: var(--muted); font-size: 12px; }
+summary .links { margin-left: auto; font-size: 12px; display: flex; gap: 10px; }
+details.n1 > summary .tt { font-size: 15px; }
+.bar { display: inline-flex; width: 140px; height: 8px; border-radius: 4px; overflow: hidden; background: var(--gris-bg); }
+.bar span { display: block; height: 100%; }
+.bar .verd { background: var(--verd); } .bar .blau { background: var(--blau); } .bar .groc { background: var(--groc); }
+.bar .gris { background: var(--gris); } .bar .roig { background: var(--roig); }
+.cnt { font-size: 12px; color: var(--muted); }
+.cnt b { color: var(--text); }
+.grid { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 12px 12px 30px; }
+.mod { position: relative; border-radius: 7px; padding: 5px 9px; min-width: 64px; border: 1px solid transparent; cursor: default; outline: none; }
+.mod .s { font-weight: 700; font-size: 13px; } .mod .c { font-size: 11px; opacity: .8; }
+.mod .i { position: absolute; top: -6px; right: -6px; background: var(--roig); color: #fff; border-radius: 9px; font-size: 10px; padding: 0 5px; line-height: 16px; }
+.mod.verd { background: var(--verd-bg); color: var(--verd); } .mod.blau { background: var(--blau-bg); color: var(--blau); }
+.mod.groc { background: var(--groc-bg); color: var(--groc); } .mod.gris { background: var(--gris-bg); color: var(--gris); }
+.mod.roig { background: var(--roig-bg); color: var(--roig); border-color: var(--roig); }
+.mod.compila { border: 2px dashed var(--accent); animation: puls 1.6s ease-in-out infinite; }
+@keyframes puls { 50% { border-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .mod.compila { animation: none; } }
+.mod.opt { border-style: dotted; border-color: currentColor; }
+.mod:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+.pop { display: none; position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; width: 380px; max-width: 86vw; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 10px 12px; font-size: 12.5px; cursor: auto; }
+.pop.dreta { left: auto; right: 0; }
+.mod:hover .pop, .mod:focus-within .pop, .mod:focus .pop { display: block; }
+.pop h4 { margin: 0 0 4px; font-size: 13px; }
+.pop .row { color: var(--muted); margin: 2px 0; }
+.pop .row b { color: var(--text); font-weight: 600; }
+.pop ul { margin: 4px 0 6px; padding-left: 18px; max-height: 160px; overflow: auto; }
+.pop li { margin: 1px 0; }
+.pop .k { font-weight: 600; margin-top: 6px; }
+.pop .ko { color: var(--roig); }
+.pop pre { white-space: pre-wrap; max-height: 120px; overflow: auto; font-size: 11px; background: var(--hover); padding: 6px; border-radius: 6px; }
+.pill { display: inline-block; padding: 0 7px; border-radius: 9px; font-size: 11px; font-weight: 600; }
+.pill.verd { background: var(--verd-bg); color: var(--verd); } .pill.blau { background: var(--blau-bg); color: var(--blau); }
+.pill.groc { background: var(--groc-bg); color: var(--groc); } .pill.gris { background: var(--gris-bg); color: var(--gris); }
+.pill.roig { background: var(--roig-bg); color: var(--roig); }
+.hidden { display: none !important; }
+table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; background: var(--hover); }
+tr:last-child td { border-bottom: 0; }
+td.t { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.card h3 { margin: 0 0 6px; font-size: 14px; }
+.prog { height: 10px; background: var(--gris-bg); border-radius: 5px; overflow: hidden; margin: 4px 0; }
+.prog span { display: block; height: 100%; background: var(--verd); }
+.prog.baix span { background: var(--groc); }
+pre.log { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px; font-size: 12px; max-height: 70vh; overflow: auto; white-space: pre-wrap; }
+.muted { color: var(--muted); }
+.spark { display: flex; gap: 18px; flex-wrap: wrap; }
+.spark svg { display: block; }
+.spark .s1 { stroke: var(--accent); fill: none; stroke-width: 2; }
+.small { font-size: 12px; }
+@media (max-width: 640px) { .wrap { padding: 12px 16px; } .bar { width: 90px; } .grid { padding-left: 12px; } summary .links { margin-left: 0; width: 100%; } }
+</style>
+</head>
+<body>
+{% macro barra(r) %}<span class="bar" title="{{ r.verd }} verificades de {{ r.total }}">{% for c in ['verd','blau','groc','gris','roig'] %}{% if r[c] %}<span class="{{ c }}" style="width:{{ 100 * r[c] / r.total }}%"></span>{% endif %}{% endfor %}</span>
+<span class="cnt"><b>{{ r.verd }}/{{ r.total }}</b> ✓{% if r.blau %} · {{ r.blau }} amb incidències{% endif %}{% if r.groc %} · {{ r.groc }} BORRADOR{% endif %}{% if r.gris %} · {{ r.gris }} falten{% endif %}{% if r.roig %} · {{ r.roig }} no compilen{% endif %}{% if r.compilar %} · {{ r.compilar }} per compilar{% endif %}</span>{% endmacro %}
+
+{% macro modul(m, amb_cicle=false) %}
+<div class="mod {{ m.color }}{% if m.compila %} compila{% endif %}{% if m.optativa %} opt{% endif %}" tabindex="0"
+  data-color="{{ m.color }}" data-txt="{{ (m.cicle ~ ' ' ~ m.codi ~ ' ' ~ m.sigla ~ ' ' ~ m.nom ~ ' ' ~ (m.docent or 'sense docent'))|lower }}">
+  <div class="s">{% if amb_cicle %}{{ m.cicle }} · {% endif %}{{ m.sigla }}</div><div class="c">{{ m.codi }}</div>
+  {% if m.incid %}<span class="i">{{ m.incid }}</span>{% endif %}
+  <div class="pop">
+    <h4>{{ m.codi }} · {{ m.nom }}</h4>
+    <div class="row">{{ m.cicle }}{% if m.curs %} · {{ m.curs }}{{ 'r' if m.curs == 1 else 'n' }} curs{% endif %} · dept. {{ m.departament }}{% if m.optativa %} · optativa{% endif %}</div>
+    <div class="row">Docent: <b>{{ m.docent or 'sense assignar' }}</b></div>
+    <div class="row">Estat: <span class="pill {{ m.color }}">{{ m.estat }}{% if m.verificat %} ✓ verificat{% endif %}</span>
+      {% if m.compila == 'espera' %} · <b>canvis recents</b>, es compilarà en uns minuts{% elif m.compila == 'pendent' %} · <b>pendent de compilar</b>{% endif %}</div>
+    {% if m.md_t %}<div class="row">Últim canvi de la PD: <b>{{ m.md_t }}</b>{% if m.dies is not none and m.dies > 0 %} (fa {{ m.dies }} dies){% endif %}</div>{% endif %}
+    {% if m.pdf_t %}<div class="row">Últim PDF: <b>{{ m.pdf_t }}</b></div>{% endif %}
+    {% if m.ko %}<div class="k ko">No compila (des de {{ m.ko.t }})</div>{% if m.ko.error %}<pre>{{ m.ko.error }}</pre>{% endif %}{% endif %}
+    {% if m.llocs %}<div class="k">{{ m.marques }} marques pendents</div><ul>{% for ln, txt in m.llocs %}<li>L{{ ln }}: {{ txt }}</li>{% endfor %}{% if m.marques > m.llocs|length %}<li>…</li>{% endif %}</ul>{% endif %}
+    {% if m.excel %}<div class="k">Excel</div><ul>{% for i in m.excel %}<li>{{ i|replace("Fulla '" ~ m.sigla ~ "': ", "") }}</li>{% endfor %}</ul>{% endif %}
+    {% if m.fe %}<div class="k">Formació en empresa</div><ul>{% for i in m.fe %}<li>{{ i }}</li>{% endfor %}</ul>{% endif %}
+    {% if m.estat == 'FALTA' %}<div class="row">No hi ha cap fitxer de PD per a este mòdul.</div>{% endif %}
+    <div class="row">{% if m.pdf %}<a href="{{ m.pdf }}">PDF del mòdul</a>{% endif %}{% if m.md %} · <a href="{{ m.md }}">fitxer .md</a>{% endif %}</div>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro arbre_cicle(c, classe='n2', obert=false) %}
+<details class="{{ classe }} grup"{% if obert %} open{% endif %}>
+  <summary><span class="tt">{{ c.cicle }}</span>{% if c.nom %}<span class="sub">{{ c.nom }}</span>{% endif %}{{ barra(c.resum) }}
+    <span class="links">{% if c.pdf %}<a href="{{ c.pdf }}">PDF del cicle</a>{% endif %}{% if c.report %}<a href="{{ c.report }}">report</a>{% endif %}{% if c.llibre %}<a href="{{ c.llibre }}">Excel</a>{% endif %}</span></summary>
+  {% for cu in c.cursos %}
+  <details class="n3 grup" open>
+    <summary><span class="tt small">{{ cu.nom }}</span>{{ barra(cu.resum) }}</summary>
+    <div class="grid">{% for m in cu.moduls %}{{ modul(m) }}{% endfor %}</div>
+  </details>
+  {% endfor %}
+</details>
+{% endmacro %}
+
+{# Només el que està pendent ara: llibres bloquejats sense pujar i fitxers en conflicte que encara hi són #}
+{% set nalertes = d.alertes|selectattr('pendent')|list|length + d.conflictes|length %}
+<div class="wrap">
+<header class="top">
+  <h1>Panel de Programacions{% if d.curs %} · {{ d.curs }}{% endif %}</h1>
+  <div class="meta">
+    <span>Actualitzat: <b id="generat" data-ts="{{ d.generat_ts }}" data-max="{{ (d.heartbeat + 2 * d.interval) * 1000 }}">{{ d.generat }}</b> <span id="fa"></span></span>
+    <span>{{ d.centre }}</span>
+    {% if d.commit %}<span>versió <b>{{ d.commit }}</b></span>{% endif %}
+    <span><button id="tema" class="small" style="border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:6px;cursor:pointer">◐ tema</button></span>
+  </div>
+</header>
+
+<div class="banners">
+  {% if d.activitat %}<div class="banner blau">⏳ Ara mateix: <b>{{ d.activitat }}</b></div>{% endif %}
+  <div class="banner roig hidden" id="aturat">⚠️ El panel no s'ha actualitzat des de fa massa estona: el poller del contenidor pot estar aturat o OneDrive no sincronitza.</div>
+  {% if d.triggers %}<div class="banner blau">▶ COMPILAR_ARA pendent: <b>{{ d.triggers|join(', ') }}</b>. Es processarà en la pròxima passada del poller (cada {{ (d.interval / 60)|round|int }} min).</div>{% endif %}
+  {% if nalertes %}<div class="banner roig">⚠️ {{ nalertes }} alerta(es) de sincronització d'OneDrive: vore la pestanya <a href="#sync" data-go="sync">Sincronització</a>.</div>{% endif %}
+  {% if d.limit %}<div class="banner {{ 'roig' if d.dies_limit < 0 else 'groc' if d.dies_limit <= 7 else '' }}">📅 Data límit de les PD: <b>{{ d.limit }}</b> —
+    {% if d.dies_limit > 0 %}falten <b>{{ d.dies_limit }}</b> dies{% elif d.dies_limit == 0 %}<b>és hui</b>{% else %}passada fa {{ -d.dies_limit }} dies{% endif %};
+    {{ d.resum.total - d.resum.verd }} PD encara no verificades.</div>{% endif %}
+</div>
+
+<div class="kpis">
+  <div class="kpi verd"><div class="v">{{ d.resum.pct }}%</div><div class="l">verificades ({{ d.resum.verd }} de {{ d.resum.total }})</div></div>
+  <div class="kpi blau"><div class="v">{{ d.resum.blau }}</div><div class="l">OK amb incidències</div></div>
+  <div class="kpi groc"><div class="v">{{ d.resum.groc }}</div><div class="l">en BORRADOR</div></div>
+  <div class="kpi gris"><div class="v">{{ d.resum.gris }}</div><div class="l">sense PD</div></div>
+  <div class="kpi roig"><div class="v">{{ d.resum.roig }}</div><div class="l">no compilen</div></div>
+  <div class="kpi"><div class="v">{{ d.resum.compilar }}</div><div class="l">pendents de compilar</div></div>
+</div>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="dept">Departaments</button>
+  <button data-tab="cicle">Cicles</button>
+  <button data-tab="docent">Docents</button>
+  <button data-tab="fe">FE</button>
+  <button data-tab="pccf">PCCF</button>
+  <button data-tab="evol">Evolució</button>
+  <button data-tab="hist">Historial</button>
+  <button data-tab="sync">Sincronització{% if nalertes %}<span class="n">{{ nalertes }}</span>{% endif %}</button>
+  <button data-tab="log">Log</button>
+</nav>
+
+<div class="toolbar" id="filtres">
+  <input type="search" id="cerca" placeholder="Cerca mòdul, codi, cicle o docent…">
+  <label class="chipf"><input type="checkbox" id="nomesinc"> només pendents</label>
+  {% for c, nom in [('verd','verificada'),('blau','OK amb incidències'),('groc','BORRADOR'),('gris','sense PD'),('roig','no compila')] %}
+  <label class="chipf"><input type="checkbox" class="fcolor" value="{{ c }}" checked><span class="dot {{ c }}"></span>{{ nom }}</label>
+  {% endfor %}
+  <button id="obri">Obri-ho tot</button><button id="tanca">Tanca-ho tot</button>
+  <span class="legend"><span><span class="dot compila"></span> per compilar</span><span>vora puntejada: optativa</span><span>número roig: incidències</span></span>
+</div>
+
+<section class="tab" id="t-dept">
+  {% for dp in d.depts %}
+  <details class="n1 grup" open>
+    <summary><span class="tt">{{ dp.dept }}</span><span class="sub">{{ dp.nom }}</span>{{ barra(dp.resum) }}
+      <span class="links">{% if dp.pdf %}<a href="{{ dp.pdf }}">PDF del departament</a>{% endif %}{% if dp.report %}<a href="{{ dp.report }}">report</a>{% endif %}</span></summary>
+    {% for c in dp.cicles %}{{ arbre_cicle(c) }}{% endfor %}
+  </details>
+  {% else %}<p class="muted">No hi ha cap PD.</p>{% endfor %}
+</section>
+
+<section class="tab" id="t-cicle">
+  {% for c in d.cicles %}{{ arbre_cicle(c, 'n1', true) }}{% endfor %}
+</section>
+
+<section class="tab" id="t-docent">
+  <p class="muted small">Agrupat pel camp <b>Docent</b> de cada PD. Primer, els mòduls sense docent; després, qui té més PD pendents.</p>
+  {% for dc in d.docents %}
+  <details class="n1 grup"{% if dc.sense or dc.resum.verd < dc.resum.total %} open{% endif %}>
+    <summary><span class="tt">{% if dc.sense %}⚠️ {% endif %}{{ dc.nom }}</span>{{ barra(dc.resum) }}</summary>
+    <div class="grid">{% for m in dc.moduls %}{{ modul(m, true) }}{% endfor %}</div>
+  </details>
+  {% endfor %}
+</section>
+
+<section class="tab" id="t-fe">
+  <h2>Formació en empresa</h2>
+  <p class="muted small">Suma de les HORES DUAL dels Excel per cicle i curs (sense les optatives), comparada amb l'objectiu de la configuració del panel (<code>objectiu_fe</code>).</p>
+  <div class="cards">
+  {% for c in d.fe %}{% for cu in c.cursos %}
+    <div class="card">
+      <h3>{{ c.cicle }} · {{ cu.nom }}</h3>
+      <div class="small"><b>{{ '%g'|format(cu.hores) }} h</b>{% if cu.objectiu %} de {{ cu.objectiu }} h previstes{% endif %} · {{ cu.complets }}/{{ cu.total }} mòduls complets
+        {% if cu.docx %} · <a href="{{ cu.docx }}">RRAA_CA</a>{% endif %}</div>
+      {% if cu.objectiu %}<div class="prog{% if cu.pct < 100 %} baix{% endif %}"><span style="width:{{ cu.pct }}%"></span></div>{% endif %}
+      <div class="small muted">{% for m in cu.moduls %}{{ m.sigla }} {{ '%g'|format(m.hores or 0) }}{% if not loop.last %} · {% endif %}{% endfor %}</div>
+      {% if cu.pendents %}<details><summary class="small">{{ cu.pendents|length }} mòduls amb FE pendent</summary><ul class="small">
+        {% for p in cu.pendents %}<li><b>{{ p.codi }}</b> {{ p.nom }} ({{ p.docent or 'sense docent' }}): {{ p.incid|join('; ') }}</li>{% endfor %}</ul></details>{% endif %}
+    </div>
+  {% endfor %}{% else %}<p class="muted">No hi ha dades de FE.</p>{% endfor %}
+  </div>
+</section>
+
+<section class="tab" id="t-pccf">
+  <h2>PCCF per cicle</h2>
+  <table><thead><tr><th>Cicle</th><th>Marques pendents</th><th>Últim PDF</th><th></th></tr></thead><tbody>
+  {% for p in d.pccf %}
+    <tr><td><b>{{ p.cicle }}</b></td>
+      <td>{% if p.error %}<span class="pill roig">error</span> {{ p.error }}{% elif p.marques %}<span class="pill groc">{{ p.marques }}</span>
+        <span class="small muted">{% for f in p.fitxers %}{{ f.fitxer }} ({{ f.n }}){% if not loop.last %}, {% endif %}{% endfor %}</span>{% else %}<span class="pill verd">cap</span>{% endif %}</td>
+      <td class="t">{{ p.pdf_t or '—' }}</td><td>{% if p.pdf %}<a href="{{ p.pdf }}">PDF</a>{% endif %}</td></tr>
+  {% endfor %}
+  </tbody></table>
+</section>
+
+<section class="tab" id="t-evol">
+  <h2>Evolució del % de PD verificades</h2>
+  <div class="spark">
+  {% for s in d.evolucio.series %}
+    <div class="card"><h3>{{ s.nom }} <span class="muted small">· ara {{ s.ultim }}%</span></h3>
+      <svg width="220" height="48" viewBox="0 -2 220 48" role="img" aria-label="Evolució {{ s.nom }}"><polyline class="s1" points="{{ s.punts }}"/></svg>
+      <div class="small muted">{{ d.evolucio.dates[0] }} → {{ d.evolucio.dates[-1] }}</div></div>
+  {% endfor %}
+  </div>
+  {% if d.vells %}
+  <h2 style="margin-top:18px">PD sense canvis des de fa {{ d.dies_sense_canvis }} dies o més (i no verificades)</h2>
+  <div class="grid" style="padding-left:0">{% for m in d.vells %}{{ modul(m, true) }}{% endfor %}</div>
+  {% endif %}
+</section>
+
+<section class="tab" id="t-hist">
+  <h2>Historial d'esdeveniments</h2>
+  <div class="toolbar">
+    <select id="ftipus"><option value="">Tots els tipus</option>{% for k, v in d.tipus_events.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</select>
+    <select id="fcicle"><option value="">Tots els cicles</option>{% for c in d.cicles %}<option>{{ c.cicle }}</option>{% endfor %}</select>
+  </div>
+  <table id="events"><thead><tr><th>Hora</th><th>Tipus</th><th>Cicle</th><th>Mòdul</th><th>Detall</th></tr></thead><tbody>
+  {% for e in d.events %}
+    <tr data-tipus="{{ e.tipus }}" data-cicle="{{ e.cicle or '' }}"><td class="t">{{ e.t }}</td>
+      <td><span class="pill {{ 'roig' if e.tipus in ['compilacio_ko','pccf_ko','error'] else 'verd' if e.tipus in ['compilacio_ok','pccf_ok'] else 'blau' if e.tipus == 'compilar_ara' else 'gris' }}">{{ d.tipus_events.get(e.tipus, e.tipus) }}</span></td>
+      <td>{{ e.cicle or '' }}</td><td>{{ e.codi or '' }}</td><td class="small">{{ e.detall or '' }}</td></tr>
+  {% else %}<tr><td colspan="5" class="muted">Encara no hi ha cap esdeveniment registrat.</td></tr>{% endfor %}
+  </tbody></table>
+</section>
+
+<section class="tab" id="t-sync">
+  <h2>Sincronització d'OneDrive</h2>
+  {% if d.conflictes %}
+  <div class="banner roig" style="margin-bottom:10px"><b>Fitxers en conflicte ara mateix</b> (cal revisar-los i esborrar-los):<ul class="small">
+    {% for f in d.conflictes %}<li>{{ f.fitxer }} <span class="muted">({{ f.t }})</span></li>{% endfor %}</ul></div>
+  {% else %}<p class="small"><span class="pill verd">cap safeBackup ni «conflicted copy»</span></p>{% endif %}
+  <table><thead><tr><th>Hora</th><th>Alerta</th><th>Fitxer</th></tr></thead><tbody>
+  {% for a in d.alertes %}
+    <tr><td class="t">{{ a.t }}</td><td><span class="pill {{ 'verd' if a.nivell == 'ok' else a.nivell }}">{{ a.tipus }}</span>{% if a.des_de %} <span class="small muted">(bloquejat des de {{ a.des_de }})</span>{% endif %}</td><td class="small">{{ a.fitxer }}</td></tr>
+  {% else %}<tr><td colspan="3" class="muted">Cap alerta en el log del client OneDrive{% if not d.salut.log_onedrive_t %} (encara no hi ha log: cal redesplegar amb l'entrypoint nou){% endif %}.</td></tr>{% endfor %}
+  </tbody></table>
+  <p class="small muted">Recordatori: si un llibre està obert a Excel Online mentre el sistema l'actualitza, OneDrive no el pot pujar i, si el docent hi guarda canvis, aparta la versió del sistema com a <i>safeBackup</i>.</p>
+</section>
+
+<section class="tab" id="t-log">
+  <h2>Sistema</h2>
+  <div class="cards" style="margin-bottom:12px">
+    <div class="card small">
+      <div>Correu (SMTP): {% if d.salut.smtp %}<span class="pill verd">configurat</span>{% else %}<span class="pill roig">sense configurar</span>{% endif %}</div>
+      <div>Disc: {% if d.salut.disc %}{{ d.salut.disc.lliure_gb }} GB lliures ({{ d.salut.disc.pct }}% ocupat){% else %}—{% endif %}</div>
+      <div>Passada del poller cada {{ (d.interval / 60)|round|int }} min · compilació {{ (d.salut.debounce / 60)|round|int }} min després de l'últim canvi</div>
+      <div>Últim missatge del poller: {{ d.salut.log_poller_t or '—' }} · d'OneDrive: {{ d.salut.log_onedrive_t or '—' }}</div>
+    </div>
+  </div>
+  <h2>Log del poller (últimes línies)</h2>
+  <pre class="log">{% for l in d.log %}{{ l }}
+{% else %}Encara no hi ha log: cal redesplegar el contenidor amb l'entrypoint nou.{% endfor %}</pre>
+  <h2>Log d'OneDrive (últimes línies)</h2>
+  <pre class="log">{% for l in d.log_onedrive %}{{ l }}
+{% else %}—{% endfor %}</pre>
+</section>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add("js");
+  function guarda(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function llig(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  // Tema
+  var tema = llig("panel-tema"); if (tema) root.setAttribute("data-theme", tema);
+  document.getElementById("tema").onclick = function () {
+    var fosc = root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark"
+      : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.setAttribute("data-theme", fosc ? "light" : "dark"); guarda("panel-tema", fosc ? "light" : "dark");
+  };
+
+  // Antiguitat del panel
+  var g = document.getElementById("generat"), ts = +g.dataset.ts, max = +g.dataset.max;
+  function fa() {
+    var min = Math.round((Date.now() - ts) / 60000);
+    document.getElementById("fa").textContent = min < 1 ? "(ara mateix)" : min < 60 ? "(fa " + min + " min)" : "(fa " + Math.round(min / 6) / 10 + " h)";
+    document.getElementById("aturat").classList.toggle("hidden", Date.now() - ts < max);
+  }
+  fa(); setInterval(fa, 30000);
+
+  // Pestanyes
+  var botons = document.querySelectorAll("#tabs button");
+  function obri(nom) {
+    botons.forEach(function (b) { b.classList.toggle("on", b.dataset.tab === nom); });
+    document.querySelectorAll("section.tab").forEach(function (s) { s.classList.toggle("on", s.id === "t-" + nom); });
+    document.getElementById("filtres").classList.toggle("hidden", ["dept", "cicle", "docent", "evol"].indexOf(nom) < 0);
+    guarda("panel-tab", nom);
+  }
+  botons.forEach(function (b) { b.onclick = function () { obri(b.dataset.tab); }; });
+  document.querySelectorAll("[data-go]").forEach(function (a) { a.onclick = function (e) { e.preventDefault(); obri(a.dataset.go); }; });
+  obri(location.hash.slice(1) || llig("panel-tab") || "dept");
+
+  // Filtres dels mòduls
+  var cerca = document.getElementById("cerca"), nomesinc = document.getElementById("nomesinc");
+  var fcolors = document.querySelectorAll(".fcolor");
+  function filtra() {
+    var q = cerca.value.trim().toLowerCase(), colors = {};
+    fcolors.forEach(function (c) { colors[c.value] = c.checked; });
+    document.querySelectorAll(".mod").forEach(function (m) {
+      var ok = colors[m.dataset.color] && (!nomesinc.checked || m.dataset.color !== "verd")
+        && (!q || m.dataset.txt.indexOf(q) >= 0);
+      m.classList.toggle("hidden", !ok);
+    });
+    document.querySelectorAll("details.grup").forEach(function (d) {
+      var visibles = d.querySelectorAll(".mod:not(.hidden)").length;
+      d.classList.toggle("hidden", visibles === 0);
+      if (q && visibles) d.open = true;
+    });
+  }
+  cerca.oninput = filtra; nomesinc.onchange = filtra;
+  fcolors.forEach(function (c) { c.onchange = filtra; });
+  document.getElementById("obri").onclick = function () { document.querySelectorAll("section.tab.on details").forEach(function (d) { d.open = true; }); };
+  document.getElementById("tanca").onclick = function () { document.querySelectorAll("section.tab.on details").forEach(function (d) { d.open = false; }); };
+
+  // El requadre del mòdul no ha d'eixir per la dreta de la pantalla
+  document.querySelectorAll(".mod").forEach(function (m) {
+    function col() { var p = m.querySelector(".pop"); p.classList.remove("dreta");
+      if (m.getBoundingClientRect().left + 390 > window.innerWidth) p.classList.add("dreta"); }
+    m.addEventListener("mouseenter", col); m.addEventListener("focus", col);
+  });
+
+  // Filtres de l'historial
+  var ft = document.getElementById("ftipus"), fc = document.getElementById("fcicle");
+  function filtraEvents() {
+    document.querySelectorAll("#events tbody tr[data-tipus]").forEach(function (tr) {
+      tr.classList.toggle("hidden", (ft.value && tr.dataset.tipus !== ft.value) || (fc.value && tr.dataset.cicle !== fc.value));
+    });
+  }
+  ft.onchange = filtraEvents; fc.onchange = filtraEvents;
+})();
+</script>
+</body>
+</html>

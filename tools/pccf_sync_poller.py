@@ -24,6 +24,7 @@ Estructura esperada dins de sync-root:
     2_esborranysPerDept/    → Programaciones_{CENTRO}_{DEPT}.pdf (en compilar un cicle)
     3_esborranyModuls/{DEPT}/ → un PDF per mòdul (en compilar un cicle)
     4_plaFormatiuFE/        → plantilla RRAA_CA + pendents_FE.txt (auto)
+    5_panel/                → panel.html (panel_pccf) + historial/ d'esdeveniments (panel_events)
 
 Ús:
     python3 tools/pccf_sync_poller.py --once             # una sola passada
@@ -52,7 +53,10 @@ from report_pccf import (compute_pd_status, compute_pccf_status, format_pd_repor
 from memories_utils import get_teacher_emails
 from mailer import smtp_configured, send_report_email, get_department_email
 import genera_fe
+import panel_events
+import panel_pccf
 import pd_build
+from panel_events import registra
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CICLES_ALL = CICLES_INF + CICLES_SCO
@@ -98,6 +102,11 @@ PD_BUILD_DEBOUNCE = int(os.environ.get("PD_BUILD_DEBOUNCE", "600"))
 # contingut}. Un mòdul sense registre (primer desplegament o mòdul nou) pren
 # l'estat actual com a punt de partida sense enviar res.
 PD_SENT_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pd_sent_state.json")
+# Panel (5_panel): mòduls amb l'última compilació fallida (el panel els pinta
+# en roig) i última empremta de cada PD ja registrada a l'historial com a
+# «PD modificada» (per no repetir-la a cada passada mentre espera el debounce).
+PD_KO_STATE_PATH = panel_pccf.KO_PATH
+PANEL_VISTOS_PATH = os.path.join(PROJECT_DIR, "temp", "panel_vistos.json")
 
 
 def load_state():
@@ -248,6 +257,7 @@ def notify_pd_teachers(cicle, familia, pd_dir, excel_per_fitxer=None):
         body += "\nRevisa-ho i corregix-ho directament als fitxers.\n"
         if send_report_email(to_addr, subject, body):
             print(f"[pccf-poller] correu enviat als docents ({to_addr}) per {fname}", flush=True)
+            registra("correu", cicle, detall=f"Avís d'incidències al docent de {fname}")
             state[state_key] = nou_estat
             save_pd_teacher_state(state)
 
@@ -291,6 +301,7 @@ def notify_fe_coordinator(sync_root, estats, text, total):
     )
     if send_report_email(to_addr, subject, body, adjunts):
         print(f"[pccf-poller] correu FE enviat a la coordinació ({to_addr}): {total} pendents", flush=True)
+        registra("correu", detall=f"Plantilla RRAA_CA a la coordinació de FE ({total} mòduls pendents)")
         os.makedirs(os.path.dirname(FE_STATE_PATH), exist_ok=True)
         with open(FE_STATE_PATH, "w", encoding="utf-8") as f:
             json.dump({"empremta": empremta}, f)
@@ -355,6 +366,7 @@ def notify_dept_report(sync_root, depts, ja_avisats=()):
         )
         if send_report_email(to_addr, subject, body, [report]):
             print(f"[pccf-poller] correu de report enviat al cap del departament {dept} ({to_addr})", flush=True)
+            registra("correu", detall=f"Report del departament {dept} al cap ({_resum_dept(moduls)})")
             state[dept] = empremta
             _guarda_dept_state(state)
 
@@ -382,6 +394,7 @@ def notify_dept_heads(sync_root, centre, depts, cicles):
         )
         if send_report_email(to_addr, subject, body, [pdf, report]):
             print(f"[pccf-poller] correu enviat al cap del departament {dept} ({to_addr}) amb el PDF", flush=True)
+            registra("correu", detall=f"PDF del departament {dept} al cap")
 
 
 def has_pd_files(pdir):
@@ -410,6 +423,7 @@ def compile_pd(cicle, familia, pdir, sync_root, centre, motiu):
     si s'han compilat els mòduls (encara que algun haja fallat: queda al log i
     es manté el seu PDF anterior; si no, el disparador es reintentaria sempre)."""
     print(f"[pccf-poller] {familia}_{cicle}: {motiu}, compilant Programacions...", flush=True)
+    panel_pccf.activitat(sync_root, f"compilant totes les PD de {cicle} ({motiu})")
     resultat_path = os.path.join(PROJECT_DIR, "temp", f"pd_build_result_{cicle}.json")
     if os.path.exists(resultat_path):
         os.remove(resultat_path)
@@ -420,9 +434,11 @@ def compile_pd(cicle, familia, pdir, sync_root, centre, motiu):
         env={**os.environ, "PD_BUILD_RESULT": resultat_path},
     )
     resultat = _llig_json(resultat_path)
+    registra_resultat(cicle, resultat, result)
     if result.returncode != 0:
         print(f"[pccf-poller] ERROR compilant PD {familia}_{cicle}:\n{result.stdout[-2000:]}\n{result.stderr[-2000:]}", flush=True)
         if not resultat:
+            registra("compilacio_ko", cicle, detall=f"{motiu}: ha fallat abans de compilar cap mòdul")
             return False
     envia_pd_docents(cicle, os.path.join(sync_root, "programacions"), resultat.get("ok", []))
 
@@ -455,6 +471,7 @@ def compile_pd(cicle, familia, pdir, sync_root, centre, motiu):
         )
         if send_report_email(to_addr, subject, body, attachments=[pdf_path, report_path]):
             print(f"[pccf-poller] correu enviat ({to_addr}) per Programacions {cicle}", flush=True)
+            registra("correu", cicle, detall=f"PDF de Programacions {cicle} al cap del cicle")
 
     return True
 
@@ -471,6 +488,48 @@ def _guarda_json(path, dades):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(dades, f, indent=1)
+
+
+def _cua_error(r, n=800):
+    return ((r.stderr or "")[-n:] or (r.stdout or "")[-n:]).strip()
+
+
+def registra_resultat(cicle, resultat, r):
+    """Historial i estat de mòduls fallits (panel) a partir del resultat de
+    compila_pd_moduls ({"ok": [...], "ko": [...]}) i del procés `r` de make."""
+    if not resultat:
+        return
+    ok, ko = resultat.get("ok", []), resultat.get("ko", [])
+    estat = _llig_json(PD_KO_STATE_PATH)
+    for codi in ok:
+        estat.pop(f"{cicle}/{codi}", None)
+    ara = time.strftime("%Y-%m-%d %H:%M")
+    for codi in ko:
+        estat[f"{cicle}/{codi}"] = {"t": ara, "error": _cua_error(r)}
+    _guarda_json(PD_KO_STATE_PATH, estat)
+    if ok:
+        registra("compilacio_ok", cicle, detall=f"Mòduls compilats: {', '.join(ok)}")
+    for codi in ko:
+        registra("compilacio_ko", cicle, codi, "No compila: es manté el PDF anterior")
+
+
+def registra_canvis(cicle, fps, canviats):
+    """Historial: una entrada «PD modificada» per cada mòdul amb una empremta
+    nova (una sola vegada, encara que espere el debounce diverses passades).
+    La primera vegada (sense estat, p. ex. després de redesplegar) només el
+    crea."""
+    vistos = _llig_json(PANEL_VISTOS_PATH)
+    primera = not vistos
+    for codi in canviats:
+        clau, emp = f"{cicle}/{codi}", fps[codi]["empremta"]
+        if vistos.get(clau) != emp:
+            if not primera:
+                registra("pd_modificada", cicle, codi, ", ".join(os.path.basename(m) for m in fps[codi]["mds"]))
+            vistos[clau] = emp
+    if primera:
+        vistos.update({f"{cicle}/{c}": v["empremta"] for c, v in fps.items()})
+        vistos.setdefault("_", 1)
+    _guarda_json(PANEL_VISTOS_PATH, vistos)
 
 
 def empremtes_o_none(cicle, prog_root):
@@ -516,6 +575,7 @@ def compila_pd_pendents(cicle, familia, sync_root, centre):
     canviats = [c for c, v in fps.items() if state.get(f"{cicle}/{c}") != v["empremta"]]
     pendents = sorted(c for c in canviats if ara - fps[c]["mtime"] >= PD_BUILD_DEBOUNCE)
     esborrats = [k for k in state if k.startswith(f"{cicle}/") and k.split("/", 1)[1] not in fps]
+    registra_canvis(cicle, fps, canviats)
     if len(pendents) < len(canviats):
         print(f"[pccf-poller] {familia}_{cicle}: {len(canviats) - len(pendents)} PD amb canvis recents, "
               f"es compilaran quan porten {PD_BUILD_DEBOUNCE // 60 or 1} min sense canvis", flush=True)
@@ -524,6 +584,7 @@ def compila_pd_pendents(cicle, familia, sync_root, centre):
 
     if pendents:
         print(f"[pccf-poller] {familia}_{cicle}: compilant les PD de {', '.join(pendents)}...", flush=True)
+        panel_pccf.activitat(sync_root, f"compilant les PD de {cicle}: {', '.join(pendents)}")
         resultat_path = os.path.join(PROJECT_DIR, "temp", f"pd_build_result_{cicle}.json")
         if os.path.exists(resultat_path):
             os.remove(resultat_path)
@@ -534,8 +595,10 @@ def compila_pd_pendents(cicle, familia, sync_root, centre):
             env={**os.environ, "PD_BUILD_RESULT": resultat_path},
         )
         resultat = _llig_json(resultat_path)
+        registra_resultat(cicle, resultat, r)
         if not resultat:
             # Ha fallat abans de compilar cap mòdul (muntatge, preparació...): es reintenta
+            registra("compilacio_ko", cicle, detall=f"{', '.join(pendents)}: ha fallat abans de compilar cap mòdul")
             print(f"[pccf-poller] ERROR compilant les PD de {familia}_{cicle}:\n{r.stdout[-2000:]}\n{r.stderr[-2000:]}", flush=True)
             return False
         if resultat.get("ko") or r.returncode != 0:
@@ -547,6 +610,8 @@ def compila_pd_pendents(cicle, familia, sync_root, centre):
         envia_pd_docents(cicle, prog_root, resultat.get("ok", []), fps)
     else:
         print(f"[pccf-poller] {familia}_{cicle}: PD esborrades ({', '.join(k.split('/', 1)[1] for k in esborrats)}), es torna a muntar el cicle", flush=True)
+        for k in esborrats:
+            registra("pd_esborrada", cicle, k.split("/", 1)[1])
         r = subprocess.run(
             ["make", f"PCCF_ROOT={sync_root}", f"CENTRO_EDUCATIVO={centre}", f"munta-pd-pccf-{cicle.lower()}"],
             cwd=PROJECT_DIR, capture_output=True, text=True,
@@ -604,6 +669,7 @@ def envia_pd_docents(cicle, prog_root, codis, fps=None):
         )
         if send_report_email(to_addr, subject, body, attachments=[pdfs[0]]):
             print(f"[pccf-poller] nova versió de {nom} enviada als docents ({to_addr})", flush=True)
+            registra("correu", cicle, codi, f"Nova versió del PDF al docent ({nom})")
             enviats[clau] = info["contingut"]
     _guarda_json(PD_SENT_STATE_PATH, enviats)
 
@@ -624,6 +690,8 @@ def check_pd_compile_trigger(cicle, familia, pdir, sync_root, centre, forcat=Fal
         return None
 
     motiu = "disparador global" if forcat and not triggers else f"disparador {PD_COMPILE_TRIGGER} detectat"
+    if triggers:
+        registra("compilar_ara", cicle, detall="Disparador a la carpeta del cicle")
     fps = empremtes_o_none(cicle, os.path.join(sync_root, "programacions"))
     if not compile_pd(cicle, familia, pdir, sync_root, centre, motiu):
         return False
@@ -649,6 +717,7 @@ def poll_once(sync_root, centre, cicle=None):
     global_triggers = [] if cicle else find_pd_triggers(prog_root)
     if global_triggers:
         print(f"[pccf-poller] disparador global {PD_COMPILE_TRIGGER} detectat a programacions/: compilant tots els cicles", flush=True)
+        registra("compilar_ara", detall="Disparador global: tots els cicles")
     fallats = []
     compilats = []  # cicles amb les Programacions compilades en esta passada
     cicles_fe = []  # cicles amb canvis de PD/Excel: es regenera la plantilla RRAA_CA
@@ -739,6 +808,7 @@ def poll_once(sync_root, centre, cicle=None):
         # --- Compilar PCCF només si els PCCF han canviat ---
         if pccf_canviat:
             print(f"[pccf-poller] {key}: compilant PCCF (pccf/src* ha canviat)...", flush=True)
+            panel_pccf.activitat(sync_root, f"compilant el PCCF de {cicle}")
             compile_result = subprocess.run(
                 ["make", f"PCCF_ROOT={sync_root}", f"CENTRO_EDUCATIVO={centre}",
                  f"compila-pccf-{cicle.lower()}"],
@@ -746,8 +816,10 @@ def poll_once(sync_root, centre, cicle=None):
             )
             if compile_result.returncode != 0:
                 print(f"[pccf-poller] ERROR compilant PCCF {key}:\n{compile_result.stdout[-3000:]}\n{compile_result.stderr[-3000:]}", flush=True)
+                registra("pccf_ko", cicle, detall=_cua_error(compile_result, 300))
                 continue
             print(f"[pccf-poller] {key}: PCCF compilat correctament.", flush=True)
+            registra("pccf_ok", cicle)
 
         state[key] = {"mtime_src": mtime_src, "mtime_familia": mtime_familia, "mtime_cicle": mtime_cicle, "mtime_pd": pd_mtime}
         save_state(state)
@@ -799,13 +871,22 @@ def main():
     if args.cicle:
         args.cicle = args.cicle.upper()
 
+    panel_events.configura(os.path.join(args.sync_root, "programacions"))
+    if not args.once:
+        registra("arrencada", detall=f"versió {panel_pccf.commit() or '?'}")
     while True:
+        panel_events.reinicia_comptador()
+        processed = []
         try:
             processed = poll_once(args.sync_root, args.centre, args.cicle)
             if not processed:
                 print("[pccf-poller] cap canvi pendent.", flush=True)
         except Exception as e:
             print(f"[pccf-poller] ERROR inesperat: {e}", flush=True)
+            registra("error", detall=f"Error inesperat: {e}")
+        if panel_pccf.actualitza(args.sync_root, args.centre,
+                                 forcat=bool(processed) or panel_events.comptador() > 0):
+            print("[pccf-poller] panel actualitzat (programacions/5_panel/panel.html)", flush=True)
         if args.once:
             break
         time.sleep(args.interval)

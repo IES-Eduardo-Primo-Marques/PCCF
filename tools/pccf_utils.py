@@ -233,6 +233,7 @@ DIR_ESBORRANY_CICLE = "1_esborranysPerCicle"   # Programaciones_{CENTRE}_{CICLE}
 DIR_ESBORRANY_DEPT = "2_esborranysPerDept"     # Programaciones_{CENTRE}_{DEPT}.pdf
 DIR_MODULS = "3_esborranyModuls"               # {DEPT}/PD_{CICLE}_{CODI}_{SIGLES}.pdf
 DIR_FE = "4_plaFormatiuFE"                     # RRAA_CA_*.docx + pendents_FE.txt
+DIR_PANEL = "5_panel"                          # panel.html + historial/ (panel_pccf.py)
 
 
 def dir_report_cicle(prog_dir):

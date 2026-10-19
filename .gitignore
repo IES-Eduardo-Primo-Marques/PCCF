@@ -19,6 +19,10 @@ pccf_sync
 # sense fer commit (mateix patro que department_emails.json), vore AGENTS.md.
 curs_actual.json
 
+# Configuració del panel de Programacions (data límit, objectius de FE...):
+# fitxer extern editable al servidor, mateix patró. Exemple: panel_config.example.json
+panel_config.json
+
 # Xarxa de seguretat: el token d'onedrive NO ha d'estar mai dins del repositori
 # (repositori públic). Viu sempre en un volum Docker extern, mai ací.
 refresh_token

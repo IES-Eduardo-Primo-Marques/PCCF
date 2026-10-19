@@ -26,6 +26,10 @@ services:
       # bind mount (si Docker no troba el fitxer origen, crea un directori
       # en el seu lloc i el contenidor falla en llegir-lo) -- vore AGENTS.md.
       - ${PCCF_DATA_DIR:-/docker/pccf}/curs_actual.json:/data/curs_actual.json:ro
+      # Configuració del panel de Programacions (data límit de les PD,
+      # objectius de FE...): mateix patró, editable al servidor sense
+      # redesplegar. Ha d'existir ABANS de desplegar amb este bind mount.
+      - ${PCCF_DATA_DIR:-/docker/pccf}/panel_config.json:/data/panel_config.json:ro
     entrypoint: ["/home/PCCF/docker-entrypoint.sh"]
     restart: unless-stopped
     environment:
@@ -48,6 +52,7 @@ services:
       - EXCEL_PROTECCIO_PASSWORD=${EXCEL_PROTECCIO_PASSWORD:-}
       - DEPARTMENT_EMAILS_FILE=/data/department_emails.json
       - CURS_ACTUAL_FILE=/data/curs_actual.json
+      - PANEL_CONFIG_FILE=/data/panel_config.json
     networks:
       - internal_pccf
 
