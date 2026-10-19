@@ -20,6 +20,8 @@ el que ja han omplit els docents a la resta de fulles:
      plantilla i el nom del mòdul;
    - hores del mòdul («És un mòdul de N hores») si han canviat al JSON;
    - mòduls que ja no dualitzen: elimina la secció «Formació en empresa»;
+   - estàndards de competència (UnidadesCompetenciaAcreditadas) si han canviat
+     al JSON: es torna a generar la secció «Relació entre els estàndards…»;
    - si el mòdul ha canviat de nom, reanomena el fitxer com ho faria json2pccf.
 
 Per defecte només simula. Amb --aplica fa còpia del llibre i de les PD a
@@ -42,6 +44,7 @@ import sys
 import tempfile
 import warnings
 
+import jinja2
 from openpyxl import load_workbook
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -65,6 +68,14 @@ _AMBIT_RE = re.compile(r"\{% if ambit %\}(.*?)\{% else %\}(.*?)\{% endif %\}", r
 with open(os.path.join(REPO, "templates", "_base_pd.md"), encoding="utf-8") as _f:
     TEXTOS_AMBIT = sorted(((vell, nou) for nou, vell in _AMBIT_RE.findall(_f.read())
                            if "{" not in vell + nou), key=lambda p: -len(p[0]))
+# Secció «Relació entre els estàndards de competència…» de la plantilla, fins al
+# títol següent. El cos es genera amb el mateix tros de Jinja de _base_pd.md.
+UC_TITOL = "## Relació entre els estàndards de competència i els mòduls del cicle formatiu\n"
+UC_SECCIO_RE = re.compile(r"^" + re.escape(UC_TITOL) + r".*?(?=^## )", re.M | re.S)
+UC_CODI_RE = re.compile(r"^\| *(UC_?\d+_\d) *\|", re.M)
+with open(os.path.join(REPO, "templates", "_base_pd.md"), encoding="utf-8") as _f:
+    _m = re.search(re.escape(UC_TITOL) + r"(.*?\{% endif %\})\{% endif %\}\n\n", _f.read(), re.S)
+    PLANTILLA_UC = jinja2.Template(UC_TITOL + _m.group(1) + "\n\n", keep_trailing_newline=True)
 INTRO_RA_RE = re.compile(r"^Els \*\*resultats d'aprenentatge\*\* relatius al mòdul de .* són:$", re.M)
 
 
@@ -165,6 +176,11 @@ def actualitza_pd(text, modul, nom_anterior=None):
     return "\n".join(linies)
 
 
+def seccio_uc(modul):
+    """Secció d'estàndards de competència tal com la genera la plantilla."""
+    return PLANTILLA_UC.render(modulo=modul)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("cicle", help="Codi del cicle (EI, IS, FPBIIO...)")
@@ -246,6 +262,15 @@ def main():
                 if hores and hores.group(2) != str(modul["horas"]):
                     text = HORES_RE.sub(lambda m: f"{m.group(1)}{modul['horas']}{m.group(3)}", text, count=1)
                     canvis.append(f"hores {hores.group(2)} → {modul['horas']}")
+                seccio = UC_SECCIO_RE.search(text)
+                if not seccio:
+                    print(f"  PD {os.path.basename(p)}: AVÍS, no trobe la secció d'estàndards de competència")
+                else:
+                    abans = UC_CODI_RE.findall(seccio.group(0))
+                    ara = list(modul.get("UnidadesCompetenciaAcreditadas") or {})
+                    if abans != ara:
+                        text = UC_SECCIO_RE.sub(lambda m: seccio_uc(modul), text, count=1)
+                        canvis.append(f"UC: {', '.join(abans) or '—'} → {', '.join(ara) or '—'}")
                 if not dualitza(modul) and FE_SECCIO_RE.search(text):
                     text = FE_SECCIO_RE.sub("", text)
                     canvis.append("secció de FE eliminada (ja no dualitza)")

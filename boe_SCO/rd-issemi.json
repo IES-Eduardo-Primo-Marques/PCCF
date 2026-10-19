@@ -239,7 +239,7 @@
             "curs": 1,
             "UnidadesCompetenciaAcreditadas": {
                 "UC0252_3": "Programar, organitzar i avaluar les intervencions d'integració social.",
-                "UC1038_3": "Identificar i concretar les característiques i necessitats del context social de la intervenció."
+                "UC1448_3": "Detectar, generar i utilitzar recursos socials i comunitaris per a la realització d'intervencions socioeducatives amb persones amb discapacitat."
             },
             "CompetenciasTitulo": [
                 "a",
@@ -472,8 +472,8 @@
             "horas": "166",
             "curs": 2,
             "UnidadesCompetenciaAcreditadas": {
-                "UC0252_3": "Programar, organitzar i avaluar les intervencions d'integració social.",
-                "UC1038_3": "Identificar i concretar les característiques i necessitats del context social de la intervenció."
+                "UC1450_3": "Organitzar, desenvolupar i avaluar processos d'inclusió de persones amb discapacitat en espais d'oci i temps lliure.",
+                "UC1452_3": "Actuar, orientar i donar suport a les famílies de persones amb discapacitat, en col·laboració amb professionals de nivell superior."
             },
             "CompetenciasTitulo": [
                 "a",
@@ -569,6 +569,7 @@
             "horas": "133",
             "curs": 1,
             "UnidadesCompetenciaAcreditadas": {
+                "UC1038_3": "Identificar i concretar les característiques i necessitats del context social de la intervenció.",
                 "UC1039_3": "Prevenir conflictes entre diferents persones, actors i col·lectius socials.",
                 "UC1040_3": "Organitzar i implementar el procés de gestió de conflictes.",
                 "UC1041_3": "Realitzar la valoració, el seguiment i la difusió de la mediació com una via de gestió de conflictes."
@@ -793,7 +794,9 @@
             "horas": "200",
             "curs": 1,
             "UnidadesCompetenciaAcreditadas": {
-                "UC0253_3": "Desenvolupar les intervencions dirigides a l'entrenament i a l'adquisició d'habilitats d'autonomia personal i social."
+                "UC0253_3": "Desenvolupar les intervencions dirigides a l'entrenament i a l'adquisició d'habilitats d'autonomia personal i social.",
+                "UC1449_3": "Organitzar i realitzar l'acompanyament de persones amb discapacitat en la realització d'activitats programades.",
+                "UC1451_3": "Organitzar i desenvolupar l'entrenament en estratègies cognitives bàsiques i alfabetització tecnològica per a persones amb discapacitat, en col·laboració amb professionals de nivell superior."
             },
             "CompetenciasTitulo": [
                 "a",
@@ -1003,7 +1006,8 @@
             "horas": "133",
             "curs": 1,
             "UnidadesCompetenciaAcreditadas": {
-                "UC0252_3": "Programar, organitzar i avaluar les intervencions d'integració social.",
+                "UC1022_3": "Dinamitzar la planificació, desenvolupament i avaluació d'intervencions i projectes comunitaris i de participació ciutadana que es desenvolupen entre els diferents agents que configuren una comunitat o una zona territorial.",
+                "UC1024_3": "Establir estratègies de comunicació i difusió dels diferents projectes i actuacions comunitaris.",
                 "UC1026_3": "Incorporar la perspectiva de gènere en els projectes d'intervenció social."
             },
             "CompetenciasTitulo": [
