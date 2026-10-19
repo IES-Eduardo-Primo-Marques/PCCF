@@ -207,8 +207,15 @@ def alertes_onedrive(linies):
                 alertes.append({"t": t, "nivell": "ok", "tipus": "Desbloquejat i pujat",
                                 "fitxer": ruta, "des_de": bloquejats.pop(ruta)})
         elif "safeBackup" in text and text.startswith("Moving "):
-            alertes.append({"t": t, "nivell": "roig", "tipus": "Conflicte (safeBackup)",
-                            "fitxer": _ruta_onedrive(text[len("Moving "):].split(" to ", 1)[0])})
+            ruta = _ruta_onedrive(text[len("Moving "):].split(" to ", 1)[0])
+            bloquejats.pop(ruta, None)  # el bloqueig s'ha resolt amb un conflicte
+            alertes.append({"t": t, "nivell": "roig", "tipus": "Conflicte (safeBackup)", "fitxer": ruta})
+        elif text.startswith("Downloading file:") and text.endswith("done"):
+            # S'ha baixat la versió del núvol: la local ja no està pendent de pujar
+            ruta = _ruta_onedrive(text.split(":", 1)[1].rsplit(" ... ", 1)[0])
+            if ruta in bloquejats:
+                alertes.append({"t": t, "nivell": "groc", "tipus": "Bloqueig resolt baixant la versió del núvol",
+                                "fitxer": ruta, "des_de": bloquejats.pop(ruta)})
         elif "failed!" in text and _ruta_onedrive(text.split(":", 1)[-1].rsplit(" ... ", 1)[0]) in bloquejats:
             continue
         elif re.search(r"\bERROR\b", text) or "failed!" in text:
@@ -568,6 +575,7 @@ def _empremta_fonts(sync_root):
     vals.append(("pccf", max((_mtime(p) for p in glob.glob(os.path.join(sync_root, "pccf", "1_esborrany", "*.pdf"))), default=0)))
     vals.append(("build", _mtime(PD_BUILD_STATE_PATH)))
     vals.append(("config", _mtime(CONFIG_PATH)))  # canviar la configuració al servidor es veu de seguida
+    vals.append(("conflictes", [f["fitxer"] for f in fitxers_conflicte(sync_root)]))
     return hashlib.sha1(repr(vals).encode()).hexdigest()
 
 
@@ -599,8 +607,9 @@ def actualitza(sync_root, centre, forcat=False, activitat=""):
 
 
 def activitat(sync_root, text):
-    """Canvia només l'activitat actual de la capçalera, amb les dades de
-    l'últim panel (sense recalcular res): «compilant DAM…»."""
+    """Canvia l'activitat actual de la capçalera («compilant DAM…») sobre les
+    dades de l'últim panel, i refresca només el que és barat: alertes i
+    fitxers en conflicte d'OneDrive, disparadors i logs."""
     d = _llig_json(CACHE_PATH)
     if not d:
         return
@@ -609,6 +618,12 @@ def activitat(sync_root, text):
         d["generat"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         d["generat_ts"] = int(time.time() * 1000)
         d["log"] = cua(LOG_POLLER, 250)
+        # El que és barat de calcular es refresca (la resta, a la pròxima `actualitza()`)
+        log_od = cua(LOG_ONEDRIVE, 4000, 2_000_000)
+        d["alertes"] = alertes_onedrive(log_od)
+        d["log_onedrive"] = [l for l in log_od if "integrity" not in l][-120:]
+        d["conflictes"] = fitxers_conflicte(sync_root)
+        d["triggers"] = _triggers(os.path.join(sync_root, "programacions"))
         escriu_atomic(os.path.join(sync_root, "programacions", DIR_PANEL, "panel.html"), render(d))
         # La pròxima `actualitza()` l'ha de reescriure (sense l'activitat)
         # encara que les dades no hagen canviat.

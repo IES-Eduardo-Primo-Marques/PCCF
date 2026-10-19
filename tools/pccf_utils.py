@@ -394,6 +394,27 @@ def hores_fulla(ws):
 
 # Percentatge de les hores del mòdul que pot anar a l'empresa (instruccions de FE dual)
 DUAL_MIN_PCT, DUAL_MAX_PCT = 10, 65
+# Cursos acadèmics en què no s'aplica el màxim (decisió de departament del
+# 2026-10-19: els plans formatius del 2026-27 ja estaven fets i alguns mòduls
+# passen del 65 %; per a este curs es donen per bons). El mínim sí que
+# s'aplica. Caduca sol: depén del curs de curs_actual.json.
+CURSOS_SENSE_MAXIM_DUAL = {"2026-2027"}
+
+
+def curs_actual():
+    """Curs acadèmic de curs_actual.json ({"curs": "2026-2027"}), o "" si no n'hi ha."""
+    path = os.environ.get("CURS_ACTUAL_FILE", os.path.join(PROJECT_DIR, "curs_actual.json"))
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)["curs"]
+    except (OSError, KeyError, ValueError, TypeError):
+        return ""
+
+
+def dual_max_pct():
+    """Màxim de HORES DUAL (% del mòdul) del curs actual, o None si no n'hi ha."""
+    return None if curs_actual() in CURSOS_SENSE_MAXIM_DUAL else DUAL_MAX_PCT
+
 MAX_CE_LLISTATS = 10   # CE que es nomenen en una incidència (un llibre nou els té tots a 0)
 
 # Criteri d'avaluació: lletra als mòduls («a)») o número als àmbits de grau
@@ -485,9 +506,11 @@ def _issues_criteris(ws, hores_modul):
     dual = sum(c["dual"] or 0 for c in ces)
     if hores_modul and dual > 0:
         pct = dual * 100 / hores_modul
-        if not DUAL_MIN_PCT <= pct <= DUAL_MAX_PCT:
-            issues.append(f"  Fulla '{nom}': HORES DUAL = {_fmt_h(dual)} h ({pct:.1f}% del mòdul), "
-                          f"ha d'estar entre el {DUAL_MIN_PCT}% i el {DUAL_MAX_PCT}%")
+        maxim = dual_max_pct()
+        if pct < DUAL_MIN_PCT or (maxim is not None and pct > maxim):
+            rang = (f"entre el {DUAL_MIN_PCT}% i el {maxim}%" if maxim is not None
+                    else f"com a mínim el {DUAL_MIN_PCT}%")
+            issues.append(f"  Fulla '{nom}': HORES DUAL = {_fmt_h(dual)} h ({pct:.1f}% del mòdul), ha d'estar {rang}")
     return issues
 
 

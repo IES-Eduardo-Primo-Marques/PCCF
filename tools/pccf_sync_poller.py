@@ -874,6 +874,12 @@ def main():
     panel_events.configura(os.path.join(args.sync_root, "programacions"))
     if not args.once:
         registra("arrencada", detall=f"versió {panel_pccf.commit() or '?'}")
+        # Panel des de l'arrencada: la primera passada després de redesplegar
+        # ho recompila tot (temp/ es perd) i pot durar molt; mentrestant
+        # `panel_pccf.activitat()` necessita un panel de base per a mostrar
+        # «compilant…».
+        if panel_pccf.actualitza(args.sync_root, args.centre, forcat=True):
+            print("[pccf-poller] panel actualitzat (programacions/5_panel/panel.html)", flush=True)
     while True:
         panel_events.reinicia_comptador()
         processed = []
