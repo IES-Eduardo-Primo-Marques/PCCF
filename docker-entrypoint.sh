@@ -42,6 +42,14 @@ fi
 # docker logs continua rebent-ho tot igual. El panel retalla els fitxers per mida.
 LOG_DIR=/home/PCCF/temp/logs
 mkdir -p "$LOG_DIR"
+
+# Estat persistent dels pollers (tools/pccf_utils.py::STATE_DIR). Si Docker ha
+# creat el directori del bind mount (de root), no s'hi pot escriure: es torna
+# a temp/, que es perd en cada redesplegament.
+if [ -n "$PCCF_STATE_DIR" ] && ! [ -w "$PCCF_STATE_DIR" ]; then
+    echo "AVÍS: no es pot escriure a PCCF_STATE_DIR=$PCCF_STATE_DIR (cal crear-lo al host amb propietari 1000:1000); s'usa temp/"
+    export PCCF_STATE_DIR=/home/PCCF/temp
+fi
 amb_log() {
     local fitxer="$1" linia
     while IFS= read -r linia || [ -n "$linia" ]; do

@@ -30,6 +30,12 @@ services:
       # objectius de FE...): mateix patró, editable al servidor sense
       # redesplegar. Ha d'existir ABANS de desplegar amb este bind mount.
       - ${PCCF_DATA_DIR:-/docker/pccf}/panel_config.json:/data/panel_config.json:ro
+      # Estat dels pollers (PD ja compilades, versions ja enviades als
+      # docents, avisos ja notificats): sense persistir, cada redesplegament
+      # recompila totes les PD. Directori de l'usuari 1000:1000 creat ABANS
+      # de desplegar (si el crea Docker, és de root i no s'hi pot escriure:
+      # l'entrypoint avisa i torna a temp/) -- vore AGENTS.md.
+      - ${PCCF_DATA_DIR:-/docker/pccf}/estat:/data/estat
     entrypoint: ["/home/PCCF/docker-entrypoint.sh"]
     restart: unless-stopped
     environment:
@@ -53,6 +59,7 @@ services:
       - DEPARTMENT_EMAILS_FILE=/data/department_emails.json
       - CURS_ACTUAL_FILE=/data/curs_actual.json
       - PANEL_CONFIG_FILE=/data/panel_config.json
+      - PCCF_STATE_DIR=/data/estat
     networks:
       - internal_pccf
 

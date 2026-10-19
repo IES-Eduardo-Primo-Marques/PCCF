@@ -30,7 +30,7 @@ import time
 from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pccf_utils import (CICLES_INF, CICLES_SCO, DEPARTAMENTS, DIR_ESBORRANY_CICLE, DIR_ESBORRANY_DEPT,  # noqa: E402
+from pccf_utils import (CICLES_INF, CICLES_SCO, DEPARTAMENTS, STATE_DIR, DIR_ESBORRANY_CICLE, DIR_ESBORRANY_DEPT,  # noqa: E402
                         DIR_FE, DIR_MODULS, DIR_PANEL, DIR_REPORT, DIR_REPORT_CICLE, DIR_REPORT_DEPT,
                         OPTATIVES_DIRNAME, get_curs, get_familia, get_hoja_label, get_moduls_del_cicle,
                         get_optatives_del_cicle)
@@ -51,8 +51,8 @@ CACHE_PATH = os.path.join(PROJECT_DIR, "temp", "panel_dades.json")
 ESTAT_PATH = os.path.join(PROJECT_DIR, "temp", "panel_estat.json")
 # Mòduls amb l'última compilació fallida: {"CICLE/CODI": {"t", "error"}}.
 # L'escriu el poller (pccf_sync_poller.registra_resultat).
-KO_PATH = os.path.join(PROJECT_DIR, "temp", "pd_ko_state.json")
-PD_BUILD_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pd_build_state.json")
+KO_PATH = os.path.join(STATE_DIR, "pd_ko_state.json")
+PD_BUILD_STATE_PATH = os.path.join(STATE_DIR, "pd_build_state.json")
 HEARTBEAT = 1800
 LOG_MAX, LOG_CONSERVA = 5_000_000, 1_000_000
 DOCENT_RE = re.compile(r"(?m)^\s*\**Docent\**\s*:\s*\**\s*(.+?)\s*$")

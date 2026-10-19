@@ -42,7 +42,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pccf_utils import (CICLES_INF, CICLES_SCO, DEPARTAMENTS, dir_moduls, get_familia, get_optatives,
+from pccf_utils import (CICLES_INF, CICLES_SCO, DEPARTAMENTS, STATE_DIR, dir_moduls, get_familia, get_optatives,
                         get_optatives_del_cicle, OPTATIVES_DIRNAME,
                         OPTATIVES_LIBRO, check_excel_coherence, find_optativa_pd, hores_per_fulla,
                         DIR_ESBORRANY_CICLE, DIR_ESBORRANY_DEPT, departaments_del_cicle,
@@ -78,12 +78,12 @@ STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pccf_poller_state.json")
 # Estat intern del poller (últim mtime de cada PD ja avaluat per a
 # notificació al docent). MAI dins la carpeta sincronitzada: és bookkeeping
 # del poller, no contingut per als docents.
-PD_TEACHER_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pccf_pd_teacher_notify_state.json")
+PD_TEACHER_STATE_PATH = os.path.join(STATE_DIR, "pccf_pd_teacher_notify_state.json")
 
 # Últim estat FE (empremta de genera_fe.empremta) ja notificat a la
 # coordinació de Formació en Empresa. Mateix criteri: fora de la carpeta
 # sincronitzada, i si l'enviament falla no es guarda (es reintenta).
-FE_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pccf_fe_notify_state.json")
+FE_STATE_PATH = os.path.join(STATE_DIR, "pccf_fe_notify_state.json")
 # Destinatari a department_emails.json: {"FE": {"coordinacio": "adreça"}}
 FE_EMAIL_TIPUS, FE_EMAIL_CLAU = "FE", "coordinacio"
 
@@ -92,21 +92,21 @@ FE_EMAIL_TIPUS, FE_EMAIL_CLAU = "FE", "coordinacio"
 DEPT_EMAIL_TIPUS = "FP"
 # Última empremta de l'estat de cada departament ja notificada al seu cap
 # ({dept: empremta}). Mateix criteri que FE: si l'enviament falla, no es guarda.
-DEPT_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pccf_dept_notify_state.json")
+DEPT_STATE_PATH = os.path.join(STATE_DIR, "pccf_dept_notify_state.json")
 # Compilació incremental de les PD: {"CICLE/CODI": empremta} dels mòduls ja
 # compilats (pd_build.empremtes). Un mòdul es torna a compilar quan la seua
 # empremta canvia i les seues fonts porten PD_BUILD_DEBOUNCE segons sense canvis.
-PD_BUILD_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pd_build_state.json")
+PD_BUILD_STATE_PATH = os.path.join(STATE_DIR, "pd_build_state.json")
 PD_BUILD_DEBOUNCE = int(os.environ.get("PD_BUILD_DEBOUNCE", "600"))
 # Versió de la PD ja enviada a cada docent: {clau_enviament: empremta de
 # contingut}. Un mòdul sense registre (primer desplegament o mòdul nou) pren
 # l'estat actual com a punt de partida sense enviar res.
-PD_SENT_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "pd_sent_state.json")
+PD_SENT_STATE_PATH = os.path.join(STATE_DIR, "pd_sent_state.json")
 # Panel (5_panel): mòduls amb l'última compilació fallida (el panel els pinta
 # en roig) i última empremta de cada PD ja registrada a l'historial com a
 # «PD modificada» (per no repetir-la a cada passada mentre espera el debounce).
 PD_KO_STATE_PATH = panel_pccf.KO_PATH
-PANEL_VISTOS_PATH = os.path.join(PROJECT_DIR, "temp", "panel_vistos.json")
+PANEL_VISTOS_PATH = os.path.join(STATE_DIR, "panel_vistos.json")
 
 
 def load_state():

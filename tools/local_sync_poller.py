@@ -23,12 +23,13 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from memories_utils import PROJECT_DIR, check_placeholders, check_stats_consistency, get_teacher_email
 from mailer import smtp_configured, send_report_email
+from pccf_utils import STATE_DIR
 
 # Estat intern del poller (últim mtime de cada .md ja avaluat per a
 # notificació al docent). MAI dins la carpeta sincronitzada: és bookkeeping
 # del poller, no contingut per als docents. Es perd sense risc si
 # s'esborra (pitjor cas: es reavalua/reenvia un avís de més).
-TEACHER_STATE_PATH = os.path.join(PROJECT_DIR, "temp", "memories_teacher_notify_state.json")
+TEACHER_STATE_PATH = os.path.join(STATE_DIR, "memories_teacher_notify_state.json")
 
 DEPARTMENTS = {
     "memoriaESOBAT": {

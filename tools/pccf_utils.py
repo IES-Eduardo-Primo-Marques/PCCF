@@ -6,6 +6,10 @@ import json
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
+# Estat dels pollers que ha de sobreviure als redesplegaments (què s'ha
+# compilat i què s'ha notificat ja). A Portainer és un bind mount fora del
+# contenidor (PCCF_STATE_DIR=/data/estat); en local, temp/.
+STATE_DIR = os.environ.get("PCCF_STATE_DIR") or os.path.join(PROJECT_DIR, "temp")
 
 CICLES_INF = ["SMX", "DAM", "CEIABD", "FPBIIO"]
 # APDSEMI i ISSEMI: modalitat semipresencial, tractada com un cicle a part
