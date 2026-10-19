@@ -304,7 +304,7 @@ def _moduls_cicle(cicle, sync_root, prog_root, centre, ara, cfg, build_state, ko
             "md_t": _hora(md_t), "dies": int((ara - md_t) // 86400) if md_t else None,
             "pdf": _enllac(prog_root, pdfs[0]) if pdfs else None,
             "pdf_t": _hora(_mtime(pdfs[0])) if pdfs else None,
-            "compila": compila, "ko": ko,
+            "compila": compila, "emp": fp["empremta"] if fp else None, "ko": ko,
         }
         m2["vell"] = bool(m2["dies"] is not None and m2["dies"] >= dies_max and not m2["verificat"])
         m2["color"] = _color(m2)
@@ -606,10 +606,40 @@ def actualitza(sync_root, centre, forcat=False, activitat=""):
         return False
 
 
+def _moduls_node(node):
+    """Mòduls d'un node de l'arbre (curs, cicle, departament o docent)."""
+    if "moduls" in node:
+        return node["moduls"]
+    return [m for fill in node.get("cursos", node.get("cicles", [])) for m in _moduls_node(fill)]
+
+
+def _refresca_compilats(d):
+    """Lleva la marca «per compilar» dels mòduls que el poller ha compilat
+    després de calcular `d` (la seua empremta ja és a pd_build_state.json) i
+    torna a comptar els pendents de cada resum. Sense llegir cap Excel."""
+    build_state = _llig_json(PD_BUILD_STATE_PATH)
+
+    def recorre(x):
+        if isinstance(x, list):
+            for y in x:
+                recorre(y)
+        elif isinstance(x, dict):
+            if x.get("compila") and x.get("emp") and build_state.get(f"{x['cicle']}/{x['codi']}") == x["emp"]:
+                x["compila"] = None
+            for v in x.values():
+                recorre(v)
+            if "resum" in x and any(k in x for k in ("moduls", "cursos", "cicles")):
+                x["resum"]["compilar"] = sum(1 for m in _moduls_node(x) if m["compila"])
+
+    recorre(d)
+    d["resum"]["compilar"] = sum(1 for c in d["cicles"] for m in _moduls_node(c) if m["compila"])
+
+
 def activitat(sync_root, text):
     """Canvia l'activitat actual de la capçalera («compilant DAM…») sobre les
     dades de l'últim panel, i refresca només el que és barat: alertes i
-    fitxers en conflicte d'OneDrive, disparadors i logs."""
+    fitxers en conflicte d'OneDrive, disparadors, logs i els mòduls que ja
+    s'han compilat en esta passada."""
     d = _llig_json(CACHE_PATH)
     if not d:
         return
@@ -624,6 +654,7 @@ def activitat(sync_root, text):
         d["log_onedrive"] = [l for l in log_od if "integrity" not in l][-120:]
         d["conflictes"] = fitxers_conflicte(sync_root)
         d["triggers"] = _triggers(os.path.join(sync_root, "programacions"))
+        _refresca_compilats(d)
         escriu_atomic(os.path.join(sync_root, "programacions", DIR_PANEL, "panel.html"), render(d))
         # La pròxima `actualitza()` l'ha de reescriure (sense l'activitat)
         # encara que les dades no hagen canviat.
