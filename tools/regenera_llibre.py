@@ -208,9 +208,14 @@ def actualitza_pd(text, modul, nom_anterior=None):
             text = re.sub(re.escape(nom_anterior) + r"(?![\wI])", modul["nombre"], text)
     linies = text.split("\n")
     idx = [i for i, l in enumerate(linies) if RA_FILA_RE.match(l)]
-    if not idx or idx != list(range(idx[0], idx[-1] + 1)):
+    if not idx:
         return None
-    linies[idx[0]:idx[-1] + 1] = taula_ra(modul)
+    # Només el primer bloc de files seguides, la taula de RA de la plantilla:
+    # més avall els docents en fan d'altres amb files «| RA1 | …» (avaluació).
+    fi = idx[0]
+    while fi + 1 < len(linies) and RA_FILA_RE.match(linies[fi + 1]):
+        fi += 1
+    linies[idx[0]:fi + 1] = taula_ra(modul)
     return "\n".join(linies)
 
 
