@@ -12,10 +12,12 @@ el que ja han omplit els docents a la resta de fulles:
      REQUISIT FE, HORES DUAL, CONTINGUTS), casant les columnes pel títol de la
      fila de capçalera, i també les alçades de fila;
    - si no coincidixen, la fulla s'ha de passar a --regenera (es queda com
-     l'acabada de generar, buida); si no, no s'escriu res.
+     l'acabada de generar, buida) o, si té el mateix nombre de RA, a
+     --conserva-ra (conserva % RA i CONTINGUTS de cada RA, i les cel·les dels
+     CE que tenen el mateix text dins del mateix RA); si no, no s'escriu res.
 3. Amb --pd, actualitza també les PD (PD_{CICLE}_{CODI}_*.md); la resta del
    que ha escrit el docent no es toca:
-   - mòduls regenerats: la taula de RA i, si el mòdul ha passat a ser un àmbit
+   - mòduls regenerats o de --conserva-ra: la taula de RA i, si el mòdul ha passat a ser un àmbit
      de grau bàsic (competències específiques CE1…), els textos de RA de la
      plantilla i el nom del mòdul;
    - hores del mòdul («És un mòdul de N hores») si han canviat al JSON;
@@ -55,6 +57,7 @@ warnings.filterwarnings("ignore")
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COL_RA, COL_CE = 2, 5
+CE_LLETRA_RE = re.compile(r"^[a-zñ]\) *")
 RA_FILA_RE = re.compile(r"^\| *(RA|CE)\d+ *\|")
 PD_ESTAT_RE = re.compile(r"_(BORRADOR|OK)\.md$")
 # «És un mòdul de {{ modulo.horas }} hores» de la plantilla
@@ -105,13 +108,18 @@ def es_editable(cell):
     return cell.protection is not None and cell.protection.locked is False
 
 
-def migra_fulla(vell, nou):
+def migra_fulla(vell, nou, files=None):
     """Copia a `nou` els valors editables de `vell`. Torna el nombre de cel·les
-    amb valor copiades i les columnes editables que el vell no té."""
+    amb valor copiades i les columnes editables que el vell no té. `files`
+    ({fila nova: fila vella}) limita la còpia a eixes files; sense, la mateixa
+    fila."""
     cap_v, cap_n = capcalera(vell), capcalera(nou)
     titol_n = {col: t for t, col in cap_n.items()}
     copiades, sense_origen = 0, set()
     for row in nou.iter_rows(min_row=FILA_CAPCALERA + 1, max_row=nou.max_row):
+        if files is not None and row[0].row not in files:
+            continue
+        fila_v = files[row[0].row] if files is not None else row[0].row
         for cell in row:
             if not es_editable(cell) or type(cell).__name__ == "MergedCell":
                 continue
@@ -120,14 +128,44 @@ def migra_fulla(vell, nou):
             if col_v is None:
                 sense_origen.add(titol)
                 continue
-            valor = vell.cell(row=cell.row, column=col_v).value
+            valor = vell.cell(row=fila_v, column=col_v).value
             if valor is not None:
                 cell.value = valor
                 copiades += 1
-    for r, dim in vell.row_dimensions.items():
-        if dim.height is not None and r > FILA_CAPCALERA:
-            nou.row_dimensions[r].height = dim.height
+    for r_n in (files or {r: r for r in vell.row_dimensions}):
+        dim = vell.row_dimensions.get(files[r_n] if files else r_n)
+        if dim is not None and dim.height is not None and r_n > FILA_CAPCALERA:
+            nou.row_dimensions[r_n].height = dim.height
     return copiades, sense_origen
+
+
+def _blocs_ra(ws):
+    """[(fila del RA, {text del CE sense la lletra: fila})] de la fulla."""
+    blocs = []
+    for r, ra, ce in textos(ws):
+        if ra:
+            blocs.append((r, {}))
+        elif ce and blocs:
+            blocs[-1][1][CE_LLETRA_RE.sub("", ce)] = r
+    return blocs
+
+
+def files_conserva_ra(vell, nou):
+    """{fila nova: fila vella} per a --conserva-ra: cada fila de RA amb la del
+    mateix RA (% RA, CONTINGUTS) i cada CE amb el del mateix RA que té el mateix
+    text (HORES, % CE, FE...). Els CE nous queden buits. None si el nombre de
+    RA no coincidix."""
+    blocs_v, blocs_n = _blocs_ra(vell), _blocs_ra(nou)
+    if len(blocs_v) != len(blocs_n):
+        return None, 0
+    files, ce_conservats = {}, 0
+    for (r_v, ce_v), (r_n, ce_n) in zip(blocs_v, blocs_n):
+        files[r_n] = r_v
+        for text, fila in ce_n.items():
+            if text in ce_v:
+                files[fila] = ce_v[text]
+                ce_conservats += 1
+    return files, ce_conservats
 
 
 def genera_llibre(cicle, familia, outdir):
@@ -188,6 +226,9 @@ def main():
     ap.add_argument("--root", default=".", help="PCCF_ROOT (al contenidor: /home/PCCF/pccf_sync)")
     ap.add_argument("--regenera", nargs="*", default=[],
                     help="Fulles que es regeneren buides (RA/CE canviats), p. ex. PA")
+    ap.add_argument("--conserva-ra", nargs="*", default=[],
+                    help="Fulles amb RA/CE canviats però el mateix nombre de RA: conserva %% RA i "
+                         "CONTINGUTS de cada RA i els CE amb el mateix text; la resta queda buida")
     ap.add_argument("--pd", action="store_true",
                     help="Actualitza també la taula de RA de les PD de les fulles regenerades")
     ap.add_argument("--aplica", action="store_true", help="Escriu els canvis (sense: només simula)")
@@ -208,10 +249,13 @@ def main():
     wb_v = load_workbook(llibre)
     wb_n = load_workbook(nou_path)
 
-    regenera = set(args.regenera)
-    desconegudes = regenera - set(wb_n.sheetnames)
+    regenera, conserva = set(args.regenera), set(args.conserva_ra)
+    desconegudes = (regenera | conserva) - set(wb_n.sheetnames)
     if desconegudes:
-        sys.exit(f"Fulles de --regenera que no existixen: {', '.join(sorted(desconegudes))}")
+        sys.exit(f"Fulles de --regenera/--conserva-ra que no existixen: {', '.join(sorted(desconegudes))}")
+    if regenera & conserva:
+        sys.exit(f"Fulles a --regenera i a --conserva-ra alhora: {', '.join(sorted(regenera & conserva))}")
+    canvien = regenera | conserva  # fulles amb RA/CE nous: la taula de RA de la PD també
 
     errors = []
     print(f"Llibre: {llibre}")
@@ -227,6 +271,16 @@ def main():
         if nom in regenera:
             print(f"  {nom:8} REGENERADA ({'RA/CE iguals que abans!' if iguals else 'RA/CE nous'}): "
                   f"es perd el que tenia")
+            continue
+        if nom in conserva:
+            files, ce_conservats = files_conserva_ra(vell, nou)
+            if files is None:
+                errors.append(nom)
+                print(f"  {nom:8} ERROR: el nombre de RA ha canviat; no es pot usar --conserva-ra (cal --regenera)")
+                continue
+            copiades, sense = migra_fulla(vell, nou, files)
+            print(f"  {nom:8} RA/CE nous, conservat per RA: {copiades} cel·les copiades; "
+                  f"{ce_conservats} CE amb el mateix text conservats, la resta buits")
             continue
         if not iguals:
             errors.append(nom)
@@ -245,13 +299,13 @@ def main():
         for codi, modul in moduls.items():
             nom = get_hoja_label(modul["nombre"])
             trobades = glob.glob(os.path.join(pdir, f"PD_{cicle}_{codi}_*.md"))
-            if nom in regenera and not trobades:
+            if nom in canvien and not trobades:
                 print(f"  PD {codi}: no hi ha fitxer")
             anterior = nom_vell(wb_v[nom]) if nom in wb_v.sheetnames else None
             for p in trobades:
                 text = open(p, encoding="utf-8").read()
                 canvis = []
-                if nom in regenera:
+                if nom in canvien:
                     text = actualitza_pd(text, modul, anterior)
                     if text is None:
                         errors.append(os.path.basename(p))

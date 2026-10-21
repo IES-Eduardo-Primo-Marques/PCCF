@@ -92,26 +92,26 @@
             "creditos": "13",
             "ResultadosAprendizaje": {
                 "RA01": {
-                    "Resultado": "Contextualitza l'educació infantil en el marc de la legislació vigent i en l'entorn social i familiar.",
+                    "Resultado": "Contextualitza la intervenció educativa relacionant-la amb el marc legislatiu i les finalitats de la institució.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els fonaments de l'educació infantil.",
-                        "b": "S'han analitzat les característiques generals de l'etapa d'educació infantil.",
-                        "c": "S'han analitzat els aspectes principals del marc legislatiu de l'educació infantil.",
-                        "d": "S'han identificat les característiques del model d'intervenció socioeducativa en l'atenció a la infància.",
-                        "e": "S'ha analitzat la relació entre educació i societat.",
-                        "f": "S'ha valorat l'educació infantil com a recurs per a la conciliació de la vida laboral i familiar.",
-                        "g": "S'ha utilitzat i valorat l'ús de les noves tecnologies com font d'intervenció.",
+                        "a": "S'ha identificat la informació sobre l'entorn social, econòmic i cultural que és útil per a la intervenció.",
+                        "b": "S'ha analitzat la legislació vigent en relació amb els serveis educatius d'atenció a la infància en l'àmbit autonòmic, estatal i europeu.",
+                        "c": "S'han comparat els diferents tipus de centres i programes d'educació formal i no formal que existixen en l'actualitat.",
+                        "d": "S'han definit les característiques, els objectius, l'organització i el tipus de funcionament d'una escola infantil.",
+                        "e": "S'han descrit les característiques, els objectius, l'organització i el tipus de funcionament d'una institució d'educació no formal.",
+                        "f": "S'ha valorat l'activitat professional del tècnic o tècnica d'educació infantil en el context de la intervenció educativa.",
+                        "g": "S'ha utilitzat i valorat l'ús de les noves tecnologies com a font d'informació.",
                         "h": "S'ha mostrat iniciativa i disposició davant noves situacions de la professió."
                     }
                 },
                 "RA02": {
-                    "Resultado": "Determina els objectius de la intervenció educativa en l'àmbit formal i no formal, relacionant-los amb les característiques de cada àmbit.",
+                    "Resultado": "Determina els objectius de la intervenció educativa, relacionant-los amb els nivells de planificació, els elements que la componen i els criteris de formulació, en els àmbits formals i no formals.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han analitzat les característiques específiques dels àmbits d'intervenció formal i no formal.",
-                        "b": "S'han descrit els diferents programes i serveis d'educació formal i no formal en l'atenció a la infància.",
-                        "c": "S'ha identificat la funció social i educativa de cada àmbit.",
-                        "d": "S'han identificat els objectius generals de l'atenció a la infància en els diferents àmbits.",
-                        "e": "S'han descrit els destinataris de la intervenció educativa en cada àmbit.",
+                        "a": "S'han identificat els elements d'un currículum.",
+                        "b": "S'han identificat els elements d'un projecte d'intervenció educativa no formal.",
+                        "c": "S'han analitzat els elements del currículum d'educació infantil.",
+                        "d": "S'han descrit les bases en què se sustenta el currículum d'educació infantil.",
+                        "e": "S'han identificat els diferents nivells de concreció curricular.",
                         "f": "S'han identificat els diferents nivells de planificació d'una activitat d'educació no formal: pla, programa i projecte.",
                         "g": "S'han comparat documents de planificació de distints tipus de institucions en l'àmbit formal i no formal.",
                         "h": "S'han seleccionat objectius i continguts partint del marc curricular o del pla o programa i les característiques dels xiquets i xiquetes per aconseguir el desenvolupament de les seves capacitats individuals.",
@@ -119,26 +119,26 @@
                     }
                 },
                 "RA03": {
-                    "Resultado": "Analitza i elabora els nivells de concreció curricular de les intervencions educatives identificant els elements que constitueixen cada un i la seua relació.",
+                    "Resultado": "Determina les estratègies metodològiques que s'han d'aplicar d'acord amb els models psicopedagògics.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han descrit els diferents nivells de concreció curricular.",
-                        "b": "S'han identificat els elements bàsics d'un projecte educatiu de centre.",
-                        "c": "S'han identificat els elements bàsics d'un projecte curricular.",
-                        "d": "S'han identificat els elements que componen una proposta pedagògica i la seua coherència.",
-                        "e": "S'han determinat els elements bàsics de la programació d'aula.",
-                        "f": "S'han especificat les característiques bàsiques de les unitats de programació.",
-                        "g": "S'han identificat les adaptacions possibles per a donar resposta a les necessitats educatives especials.",
+                        "a": "S'han identificat els models didàctics específics d'educació infantil.",
+                        "b": "S'han interpretat els principis que fonamenten els diferents models d'atenció a la infància.",
+                        "c": "S'han analitzat els principis psicopedagògics que sustenten els models més recents en relació amb l'educació formal d'educació infantil.",
+                        "d": "S'han comparat experiències educatives rellevants per a definir la pròpia intervenció educativa.",
+                        "e": "S'han integrat els temes transversals en l'elaboració d'unitats didàctiques.",
+                        "f": "S'han seleccionat criteris metodològics d'acord amb els objectius de la institució, el marc curricular i les necessitats i els interessos dels xiquets i xiquetes.",
+                        "g": "S'han dissenyat les adaptacions curriculars, tenint en compte les recomanacions de les entitats o professionals implicats i la informació obtinguda.",
                         "h": "S'ha valorat la participació en les activitats en equip, el contrast d'opinions i el intercanvi d'experiències."
                     }
                 },
                 "RA04": {
-                    "Resultado": "Organitza els recursos i l'espai de l'aula per a desenvolupar l'activitat educativa relacionant la distribució dels recursos amb la metodologia.",
+                    "Resultado": "Determina i organitza els recursos materials i personals, els espais i els temps, analitzant la normativa legal i aplicant criteris pedagògics en la intervenció educativa en la infància.",
                     "CriteriosEvaluacion": {
-                        "a": "S'ha definit el concepte de recurs didàctic i les seues característiques.",
-                        "b": "S'han establert criteris per a l'organització dels espais i dels recursos.",
-                        "c": "S'han descrit els principals tipus de recursos didàctics.",
-                        "d": "S'han descrit les característiques de l'organització de l'ambient i l'espai.",
-                        "e": "S'ha valorat la importància de la presa de decisions per a organitzar els espais i els recursos.",
+                        "a": "S'han identificat els diferents materials didàctics, espais i temps d'acord amb la intervenció educativa.",
+                        "b": "S'ha descrit la normativa que regula l'ús d'espais, recursos i temps en l'àmbit formal i no formal segons el marc estatal i autonòmic.",
+                        "c": "S'ha definit l'organització del temps i de l'espai com a recurs didàctic.",
+                        "d": "S'ha reconegut i valorat la necessitat d'organitzar les tasques.",
+                        "e": "S'han analitzat els diferents models d'agrupament d'acord amb el nombre de participants, l'edat, la metodologia i la programació prevista.",
                         "f": "S 'han analitzat els espais i materials didàctics i mobiliari, comprovant el compliment de les normes de seguretat i higiene i les condicions d'accessibilitat.",
                         "g": "S'han seleccionat materials didàctics i didàctic-interactiu adequats als objectius, continguts i criteris metodològics.",
                         "h": "S'han establert els espais, materials, recursos humans, temps, tenint en compte l'edat, nombre de xiquets i xiquetes i en el seu cas, les necessitats educatives especials.",
@@ -146,26 +146,26 @@
                     }
                 },
                 "RA05": {
-                    "Resultado": "Dissenya i implementa activitats educatives emprant els recursos metodològics adequats i respectant els principis psicopedagògics que fonamenten la pràctica.",
+                    "Resultado": "Planifica les activitats d'educació formal i no formal, relacionant-les amb els objectius de la programació i amb les característiques dels xiquets i xiquetes.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els principis psicopedagògics que fonamenten la pràctica educativa.",
-                        "b": "S'han descrit les diferents opcions metodològiques aplicables a l'educació infantil.",
-                        "c": "S'han identificat els criteris per a l'elaboració d'activitats.",
-                        "d": "S'han utilitzat els recursos adequats a l'activitat.",
-                        "e": "S'ha valorat la coherència entre les activitats i els principis psicopedagògics.",
-                        "f": "S'ha valorat la importància del respecte als ritmes individuals.",
+                        "a": "S'han relacionat les activitats amb els objectius, els continguts, la metodologia i les necessitats individuals dels xiquets i xiquetes.",
+                        "b": "S'han integrat els diferents temes transversals en les activitats programades.",
+                        "c": "S'han dissenyat diferents activitats per al tractament de l'atenció a la diversitat i la compensació de desigualtats socials.",
+                        "d": "S'han identificat possibles dificultats i s'han proposat solucions viables.",
+                        "e": "S'han elaborat adaptacions curriculars en funció de les característiques individuals i de les necessitats específiques de suport educatiu del grup destinatari.",
+                        "f": "S'han analitzat adaptacions curriculars en relació amb supòsits de necessitats educatives especials permanents o temporals.",
                         "g": "S'ha valorat la coherència de la planificació de les activitats d'educació formal i no formal amb els objectius de la programació."
                     }
                 },
                 "RA06": {
-                    "Resultado": "Planifica el procés d'avaluació de les intervencions relacionant-lo amb els elements de la programació.",
+                    "Resultado": "Dissenya l'avaluació dels processos d'intervenció, argumentant la selecció del model, les estratègies i les tècniques i els instruments utilitzats.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els criteris i procediments d'avaluació de les intervencions educatives.",
-                        "b": "S'ha justificat l'avaluació com a element de millora de la intervenció.",
-                        "c": "S'ha determinat la forma i la periodicitat de la informació a les famílies.",
-                        "d": "S'han elaborat instruments d'avaluació.",
-                        "e": "S'han descrit els procediments de transmissió d'informació als destinataris.",
-                        "f": "S'ha valorat la importància de la confidencialitat en la transmissió de la informació.",
+                        "a": "S'han identificat els diferents models d'avaluació.",
+                        "b": "S'han definit les estratègies i les tècniques d'avaluació, tenint en compte la planificació de la intervenció i els moments de la intervenció.",
+                        "c": "S'han seleccionat les estratègies i les tècniques d'avaluació en diferents moments al llarg del procés d'intervenció.",
+                        "d": "S'han dissenyat les activitats d'avaluació tenint en compte els criteris i els procediments establits dins del marc curricular, en el cas de l'educació formal, i del pla o programa, en el cas de l'educació no formal.",
+                        "e": "S'han establit indicadors d'avaluació en diferents moments del procés d'intervenció que valoren: l'adequació dels objectius i dels criteris metodològics, la selecció i la seqüenciació dels continguts i de les activitats, i la funcionalitat i l'adequació dels espais i materials emprats.",
+                        "f": "S'ha valorat la importància de l'avaluació en els diferents moments del procés.",
                         "g": "S'ha valorat la importància de mantenir una actitud permanent de millora en l'eficàcia i qualitat del servei.",
                         "h": "S'han identificat els recursos per a la formació permanent dels educadors i educadores."
                     }
@@ -204,40 +204,42 @@
             "creditos": "11",
             "ResultadosAprendizaje": {
                 "RA01": {
-                    "Resultado": "Planifica les activitats educatives d'atenció a les necessitats bàsiques dels xiquets i xiquetes analitzant les característiques evolutives i les pautes d'actuació relacionades.",
+                    "Resultado": "Planifica activitats educatives d'atenció a les necessitats bàsiques dels xiquets i xiquetes analitzant les pautes d'alimentació, higiene i descans i els patrons de creixement i desenvolupament físic.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els aspectes bàsics del creixement i el desenvolupament físic dels xiquets i xiquetes.",
-                        "b": "S'han identificat les necessitats bàsiques dels xiquets i xiquetes.",
-                        "c": "S'han descrit les característiques evolutives en l'atenció a les necessitats bàsiques durant els primers anys de vida.",
-                        "d": "S'han identificat les rutines que afavoreixen l'adquisició d'hàbits de vida saludable.",
-                        "e": "S'han descrit les activitats de la vida quotidiana que desenvolupen la progressiva autonomia.",
-                        "f": "S'han programat activitats d'atenció a les necessitats bàsiques.",
-                        "g": "S'han dissenyat ambients aptes i segurs per a la satisfacció de les necessitats bàsiques dels nens i nenes",
+                        "a": "S'han identificat les fases del desenvolupament físic i els factors que hi influïxen.",
+                        "b": "S'han descrit les característiques i les necessitats dels xiquets i xiquetes en relació amb l'alimentació, la higiene i el descans.",
+                        "c": "S'han elaborat diferents tipus de dietes i menús adaptats a les característiques del xiquet o xiqueta (edat, al·lèrgies, intoleràncies alimentàries i altres).",
+                        "d": "S'han descrit les pautes d'actuació en relació amb la neteja, la higiene, el vestit, el descans i la son infantil.",
+                        "e": "S'han identificat els principals trastorns i conflictes relacionats amb l'alimentació, la higiene i el descans.",
+                        "f": "S'han proposat activitats, recursos i estratègies adequades per a la satisfacció de les necessitats bàsiques dels xiquets i xiquetes.",
+                        "g": "S'han dissenyat ambients aptes i segurs per a la satisfacció de les necessitats d'alimentació, higiene i descans.",
                         "h": "S'han establert els elements materials, espacials i temporals que intervenen en la planificació i desenvolupament de les rutines diaries",
-                        "i": "S'ha relacionat la forma d'atenció de cadascuna de les necessitats bàsiques amb les característiques dels nens i les nenes"
+                        "i": "S'ha relacionat la forma d'atenció de cadascuna de les necessitats bàsiques amb les característiques dels nens i les nenes",
+                        "j": "S'ha valorat la importància educativa de les activitats relacionades amb la satisfacció de les necessitats bàsiques."
                     }
                 },
                 "RA02": {
-                    "Resultado": "Programa les intervencions per a l'adquisició d'hàbits d'autonomia personal en els xiquets i xiquetes analitzant les estratègies educatives.",
+                    "Resultado": "Programa intervencions educatives per a afavorir el desenvolupament d'hàbits d'autonomia personal en els xiquets i xiquetes, relacionant-les amb les estratègies de planificació educativa i els ritmes de desenvolupament infantil.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els hàbits d'autonomia personal propis de l'etapa.",
-                        "b": "S'han descrit les característiques dels hàbits en funció de l'edat.",
-                        "c": "S'han identificat les estratègies metodològiques afavoridores de l'adquisició d'hàbits.",
-                        "d": "S'han descrit les activitats adequades per a l'adquisició de cada hàbit.",
-                        "e": "S'han seqüenciat les activitats d'adquisició d'hàbits en funció de l'edat.",
-                        "f": "S'ha valorat la importància d'una programació fonamentada per a l'adquisició d'hàbits.",
+                        "a": "S'han descrit les fases del procés d'adquisició d'hàbits.",
+                        "b": "S'han formulat objectius d'acord amb les possibilitats d'autonomia dels xiquets i xiquetes.",
+                        "c": "S'han seqüenciat els aprenentatges d'autonomia personal a partir de les característiques evolutives dels xiquets i xiquetes.",
+                        "d": "S'han dissenyat ambients afavoridors de l'autonomia personal.",
+                        "e": "S'han establit estratègies i instruments per a la detecció d'elements que dificulten l'adquisició de l'autonomia personal dels xiquets i xiquetes.",
+                        "f": "S'han proposat activitats adequades per a l'adquisició d'hàbits d'autonomia personal.",
                         "g": "S'han identificat els possibles conflictes i trastorns relacionats amb l'adquisició d'hàbits d'autonomía personal.",
                         "h": "S'ha valorat la importància de l'adquisició de l'autonomia personal per a la construcció d'una autoimatge positiva i del seu desenvolupament integral per part de l'infant",
-                        "i": "S'ha explicat el paper de les persones adultes en l'adquisició de l'autonomia personal."
+                        "i": "S'ha valorat la importància de la col·laboració de la família en l'adquisició i la consolidació d'hàbits d'autonomia personal.",
+                        "j": "S'ha explicat el paper de les persones adultes en l'adquisició de l'autonomia personal."
                     }
                 },
                 "RA03": {
-                    "Resultado": "Organitza els espais, temps i recursos de la intervenció relacionant-los amb els ritmes infantils i les necessitats de cada moment.",
+                    "Resultado": "Organitza els espais, els temps i els recursos de la intervenció relacionant-los amb els ritmes infantils i la necessitat de les rutines dels xiquets i xiquetes de 0 a 6 anys i, si és el cas, amb les ajudes tècniques que calguen.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques de l'organització dels espais i els recursos segons les necessitats.",
-                        "b": "S'han descrit criteris per a l'organització dels espais segons les activitats.",
-                        "c": "S'ha valorat la importància de l'organització del temps segons els ritmes individuals.",
-                        "d": "S'han identificat els recursos apropiats per a cada activitat.",
+                        "a": "S'ha explicat el paper de les rutines en el desenvolupament infantil i la seua influència en l'organització temporal de l'activitat del centre.",
+                        "b": "S'han establit les rutines diàries per a l'alimentació, la higiene i el descans.",
+                        "c": "S'han preparat l'espai i les condicions més adequades per al descans, la higiene i l'alimentació.",
+                        "d": "S'han organitzat els temps respectant els ritmes infantils i l'equilibri entre els períodes d'activitat i de descans.",
                         "e": "S'han aportat solucions front a les dificultats detectades.",
                         "f": "S'han seleccionat els objectes i recursos materials necessaris per a treballar els diferents hàbits d’ alimentació, higiene, descans i altres.",
                         "g": "S'han seleccionat les ajudes tècniques necessàries.",
@@ -246,13 +248,13 @@
                     }
                 },
                 "RA04": {
-                    "Resultado": "Realitza les activitats d'atenció a les necessitats bàsiques i d'adquisició d'hàbits d'autonomia dels xiquets i xiquetes relacionant-les amb les característiques individuals de cada xiquet o xiqueta.",
+                    "Resultado": "Realitza activitats d'atenció a les necessitats bàsiques i d'adquisició d'hàbits d'autonomia dels xiquets i xiquetes, justificant les pautes d'actuació.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han aplicat les tècniques d'atenció a les necessitats bàsiques.",
-                        "b": "S'han emprat els recursos adequats a cada activitat.",
-                        "c": "S'ha adaptat la intervenció a les característiques individuals.",
-                        "d": "S'han aplicat les estratègies metodològiques afavoridores de l'adquisició d'hàbits.",
-                        "e": "S'ha valorat la importància de respectar els ritmes individuals.",
+                        "a": "S'ha dut a terme la intervenció, adequant-la a les característiques individuals dels xiquets i xiquetes, als criteris metodològics previstos i als recursos disponibles.",
+                        "b": "S'han descrit les estratègies per a satisfer les necessitats de relació en les rutines diàries.",
+                        "c": "S'han aplicat les tècniques d'alimentació, neteja i higiene infantil dels nadons.",
+                        "d": "S'ha establit una relació educativa amb el xiquet o la xiqueta.",
+                        "e": "S'han aplicat estratègies metodològiques per a afavorir el desenvolupament de l'autonomia personal en els xiquets i xiquetes.",
                         "f": "S'han respectat els ritmes individuals dels xiquets/etes.",
                         "g": "S'han utilitzat les ajudes tècniques seguint els protocols establerts.",
                         "h": "S'han respectat les normes d'higiene, prevenció i seguretat.",
@@ -261,26 +263,29 @@
                     }
                 },
                 "RA05": {
-                    "Resultado": "Intervé en situacions especials relatives a la salut, identificant les característiques i aplicant els protocols d'actuació apropiats.",
+                    "Resultado": "Intervé en situacions d'especial dificultat o risc per a la salut i la seguretat dels xiquets i xiquetes relacionant la seua actuació amb els protocols establits per a la prevenció i la intervenció en casos de malaltia o accident.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les necessitats educatives especials relacionades amb la salut.",
-                        "b": "S'han descrit les malalties infantils més freqüents.",
-                        "c": "S'han identificat els protocols d'actuació davant malalties.",
-                        "d": "S'han descrit les pautes d'administració de medicaments.",
-                        "e": "S'han identificat les situacions d'accidents infantils més freqüents.",
-                        "f": "S'han aplicat les tècniques de primers auxilis apropiades a cada situació.",
-                        "g": "S'ha comprovat que l'ambient, els materials i equips especifics compleixen les normes de qualitat i seguretat esablertes."
+                        "a": "S'han identificat les característiques i les necessitats bàsiques dels xiquets i xiquetes de 0 a 6 anys en matèria de salut i seguretat, relacionant-les amb l'etapa evolutiva en què es troben i amb els instruments adequats.",
+                        "b": "S'han descrit les condicions i les mesures sanitàries i preventives que cal adoptar per a la promoció de la salut i el benestar en els centres d'atenció a la infància.",
+                        "c": "S'ha valorat la importància de l'estat de salut i la higiene personal de l'educador o educadora en la prevenció de riscos per a la salut.",
+                        "d": "S'han indicat els criteris i/o símptomes més rellevants per a la identificació de les principals malalties infantils, descrivint els protocols d'actuació que cal seguir.",
+                        "e": "S'han identificat els accidents infantils més freqüents.",
+                        "f": "S'han descrit les estratègies de prevenció dels accidents infantils.",
+                        "g": "S'ha valorat el paper de les actituds de l'educador o educadora infantil davant de les situacions de malaltia i accident.",
+                        "h": "S'ha comprovat que l'ambient, els materials i equips especifics compleixen les normes de qualitat i seguretat esablertes.",
+                        "i": "S'han establit i mantingut relacions de comunicació efectives amb les famílies i, si és el cas, amb altres professionals, seguint els procediments previstos.",
+                        "j": "S'ha valorat el paper de la persona tècnica en educació infantil com a agent de salut i seguretat."
                     }
                 },
                 "RA06": {
-                    "Resultado": "Avalua el procés i el resultat de la intervenció en relació amb la satisfacció de les necessitats bàsiques, l'adquisició d'hàbits i les actuacions en matèria de salut.",
+                    "Resultado": "Avalua el procés i el resultat de la intervenció en relació amb la satisfacció de les necessitats bàsiques i l'adquisició d'hàbits d'autonomia personal, justificant la selecció de les estratègies i els instruments emprats.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han seleccionat els indicadors d'avaluació.",
-                        "b": "S'han elaborat instruments d'avaluació.",
-                        "c": "S'han aplicat els instruments d'avaluació.",
-                        "d": "S'han interpretat les dades obtingudes.",
-                        "e": "S'han proposat modificacions a partir dels resultats obtinguts.",
-                        "f": "S'ha valorat la importància de l'avaluació per a la millora de la intervenció.",
+                        "a": "S'han identificat les fonts d'informació i les tècniques de seguiment del desenvolupament físic, de l'adquisició d'hàbits i de la detecció de situacions de risc.",
+                        "b": "S'han seleccionat els indicadors i els instruments apropiats per al control i el seguiment de l'evolució dels xiquets i xiquetes i del procés d'intervenció.",
+                        "c": "S'ha aplicat l'instrument d'avaluació seguint el procediment correcte.",
+                        "d": "S'han registrat les dades en el suport establit.",
+                        "e": "S'ha interpretat correctament la informació recollida.",
+                        "f": "S'han identificat les possibles causes d'una intervenció no adequada.",
                         "g": "S'han identificat les situacions en les que és necessari la col·laboració de les famílies i d'altres professionals.",
                         "h": "S'han elaborat informes sobre l'evolució en l'adquisició d'hàbits i la satisfacció de les necessitats bàsiques i/o trastorns en aquests àmbits dirigits a les famílies i altres professionals.",
                         "i": "S'ha valorat la importància de l'avaluació per donar una resposta adequada a les necessitats bàsiques dels xiquets/etes."
@@ -315,67 +320,86 @@
             "creditos": "9",
             "ResultadosAprendizaje": {
                 "RA01": {
-                    "Resultado": "Contextualitza el model lúdic en la intervenció educativa, valorant-lo com a recurs i com a estratègia metodològica de l'educació infantil.",
+                    "Resultado": "Contextualitza el model lúdic en la intervenció educativa, valorant-lo amb les diferents teories sobre el joc, la seua evolució i importància en el desenvolupament infantil i el seu paper com a eix metodològic.",
                     "CriteriosEvaluacion": {
-                        "a": "S'ha identificat la funció del joc en el desenvolupament integral dels xiquets i xiquetes.",
+                        "a": "S'han identificat les característiques del joc en els xiquets i xiquetes.",
                         "b": "S'ha analitzat l'evolució del joc durant el desenvolupament infantil.",
-                        "c": "S'han identificat les principals teories del joc.",
-                        "d": "S'han descrit les característiques del model lúdic.",
-                        "e": "S'han identificat els principals tipus de joc segons diferents classificacions.",
-                        "f": "S'ha valorat la importància del joc en el desenvolupament."
+                        "c": "S'ha analitzat la importància del joc en el desenvolupament infantil.",
+                        "d": "S'ha valorat la importància d'incorporar aspectes lúdics en el procés d'ensenyament-aprenentatge.",
+                        "e": "S'han establit semblances i diferències entre les diverses teories del joc.",
+                        "f": "S'ha relacionat el joc amb les diferents dimensions del desenvolupament infantil.",
+                        "g": "S'ha reconegut la importància del joc com a factor d'integració, adaptació social, igualtat i convivència.",
+                        "h": "S'han analitzat projectes que utilitzen el joc com a eix d'intervenció, en l'àmbit formal i no formal.",
+                        "i": "S'han incorporat elements lúdics en la intervenció educativa.",
+                        "j": "S'ha valorat la importància del joc en el desenvolupament infantil i com a eix metodològic de la intervenció educativa."
                     }
                 },
                 "RA02": {
-                    "Resultado": "Dissenya projectes d'intervenció lúdics, relacionant-los amb el context i les característiques del grup al qual van dirigits.",
+                    "Resultado": "Dissenya projectes d'intervenció lúdics, relacionant-los amb el context i l'equipament o servei en què es desenvolupen i amb els principis de l'animació infantil.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del grup destinatari.",
-                        "b": "S'han formulat els objectius del projecte lúdic.",
-                        "c": "S'han seleccionat els continguts d'acord amb els objectius.",
-                        "d": "S'han identificat els criteris d'organització de l'espai per al joc.",
-                        "e": "S'han descrit els recursos i materials lúdics.",
-                        "f": "S'han seleccionat estratègies metodològiques adequades.",
-                        "g": "S'han especificat els criteris i procediments d'avaluació."
+                        "a": "S'han descrit els principis, els objectius i les modalitats de l'animació infantil.",
+                        "b": "S'han identificat els diferents tipus de centres que oferixen activitats de joc infantil.",
+                        "c": "S'han analitzat la legislació, les característiques, els requisits mínims de funcionament, les funcions que complixen i el personal.",
+                        "d": "S'han identificat les característiques i les prestacions del servei o equipament lúdic.",
+                        "e": "S'han aplicat els elements de la programació en el disseny del projecte lúdic.",
+                        "f": "S'han establit espais de joc tenint en compte: el tipus d'institució, els objectius previstos, les característiques dels xiquets i xiquetes, els materials de què es disposa, el pressupost i el tipus d'activitat que s'hi ha de realitzar.",
+                        "g": "S'han valorat les noves tecnologies com a font d'informació en la planificació de projectes lúdics i recreatius.",
+                        "h": "S'han definit els criteris de selecció de materials, d'activitats que cal realitzar, d'organització i recollida de materials, de tècniques d'avaluació i d'elements de seguretat en els llocs de joc.",
+                        "i": "S'han tingut en compte la gestió i l'organització de recursos humans i materials en el disseny del projecte lúdic.",
+                        "j": "S'ha adaptat un projecte tipus d'intervenció lúdica i recreativa per a un programa, centre o institució determinada.",
+                        "k": "S'ha valorat la importància de generar entorns segurs."
                     }
                 },
                 "RA03": {
-                    "Resultado": "Dissenya activitats lúdiques, identificant els principis metodològics que les fonamenten.",
+                    "Resultado": "Dissenya activitats lúdiques, relacionant-les amb les teories del joc i amb el moment evolutiu en què es troba el xiquet o xiqueta.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els principis metodològics de la intervenció lúdica.",
-                        "b": "S'han seleccionat activitats lúdiques adaptades a les característiques del grup.",
-                        "c": "S'han dissenyat activitats per a cada tipus de joc.",
-                        "d": "S'han identificat les estratègies per a fomentar el joc.",
-                        "e": "S'ha valorat la importància de l'observació del joc per a la intervenció educativa."
+                        "a": "S'ha tingut en compte el moment evolutiu dels xiquets i xiquetes en el disseny de les activitats lúdiques.",
+                        "b": "S'han enumerat i classificat diferents activitats lúdiques atenent a criteris com ara, entre altres: edats, espais, rol del tècnic o tècnica, nombre de participants, capacitats que desenvolupen, relacions que s'hi establixen i materials necessaris.",
+                        "c": "S'han tingut en compte les característiques i el nivell de desenvolupament dels xiquets i xiquetes per a la programació d'activitats lúdiques i recreatives.",
+                        "d": "S'han recopilat jocs tradicionals relacionant-los amb l'edat.",
+                        "e": "S'han analitzat els elements de la planificació d'activitats lúdiques.",
+                        "f": "S'ha relacionat el significat dels jocs més freqüents en l'etapa infantil amb les capacitats que desenvolupen.",
+                        "g": "S'han valorat les noves tecnologies com a font d'informació.",
+                        "h": "S'ha valorat l'actitud del professional respecte al tipus d'intervenció."
                     }
                 },
                 "RA04": {
-                    "Resultado": "Selecciona els recursos lúdics analitzant les necessitats del grup i del context educatiu.",
+                    "Resultado": "Selecciona joguets per a activitats lúdiques, relacionant-ne les característiques amb les etapes del desenvolupament infantil.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del material de joc segons l'edat.",
-                        "b": "S'han aplicat criteris de selecció del material de joc.",
-                        "c": "S'han analitzat joguets des del punt de vista pedagògic i de seguretat.",
-                        "d": "S'ha valorat la importància d'adaptar els materials a les necessitats del grup.",
-                        "e": "S'han elaborat materials de joc."
+                        "a": "S'han analitzat diferents tipus de joguets, les seues característiques, la seua funció i les capacitats que contribuïxen a desenvolupar en el procés evolutiu del xiquet i de la xiqueta.",
+                        "b": "S'han valorat les noves tecnologies com a font d'informació.",
+                        "c": "S'ha elaborat un dossier de joguets infantils adequats a l'edat.",
+                        "d": "S'han recopilat joguets tradicionals relacionant-los amb l'edat.",
+                        "e": "S'han identificat joguets per a espais tancats i oberts adequats a l'edat.",
+                        "f": "S'han enumerat i classificat diferents joguets atenent als criteris de: edat, espai de realització, rol de l'educador o educadora, nombre de participants, capacitats que desenvolupen, relacions que s'hi establixen i materials necessaris.",
+                        "g": "S'han establit criteris per a la disposició, la utilització i la conservació de materials lúdics.",
+                        "h": "S'ha analitzat la legislació vigent en matèria d'ús i seguretat de joguets.",
+                        "i": "S'ha reconegut la necessitat d'adequar-se a les condicions de seguretat dels joguets infantils."
                     }
                 },
                 "RA05": {
-                    "Resultado": "Implementa activitats lúdiques relacionant-les amb els objectius previstos.",
+                    "Resultado": "Implementa activitats lúdiques, relacionant-les amb els objectius establits i els recursos necessaris.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han aplicat les estratègies metodològiques del model lúdic.",
-                        "b": "S'ha creat un clima afavoridor del joc.",
-                        "c": "S'ha adaptat el rol de l'educador o educadora segons les necessitats del joc.",
-                        "d": "S'han respost adequadament les contingències sorgides.",
-                        "e": "S'ha mostrat una actitud de respecte cap al joc infantil."
+                        "a": "S'ha tingut en compte l'adequació de les activitats als objectius establits en la implementació d'estes.",
+                        "b": "S'ha justificat la necessitat de diversitat en el desenvolupament d'activitats lúdiques.",
+                        "c": "S'han organitzat els espais, els recursos i els materials adequant-se a les característiques evolutives dels destinataris, en funció de la seua edat i d'acord amb els objectius previstos.",
+                        "d": "S'ha establit una distribució temporal de les activitats en funció de l'edat dels destinataris.",
+                        "e": "S'han identificat els trastorns més comuns i les alternatives d'intervenció.",
+                        "f": "S'han realitzat joguets amb diferents materials adequats a l'etapa.",
+                        "g": "S'han realitzat les activitats lúdiques i recreatives ajustant-se a la planificació temporal.",
+                        "h": "S'ha valorat la importància de generar entorns segurs."
                     }
                 },
                 "RA06": {
-                    "Resultado": "Avalua activitats lúdiques identificant els instruments i procediments adequats.",
+                    "Resultado": "Avalua projectes i activitats d'intervenció lúdica, justificant les tècniques i els instruments d'observació seleccionats.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han seleccionat els indicadors d'avaluació.",
-                        "b": "S'han elaborat instruments d'avaluació.",
-                        "c": "S'han aplicat instruments d'avaluació.",
-                        "d": "S'han interpretat les dades obtingudes.",
-                        "e": "S'han proposat modificacions en funció dels resultats.",
-                        "f": "S'ha valorat la importància de l'avaluació per a la millora de la intervenció."
+                        "a": "S'han identificat les condicions i els mètodes necessaris per a realitzar una avaluació de l'activitat lúdica.",
+                        "b": "S'han seleccionat els indicadors d'avaluació.",
+                        "c": "S'han aplicat diferents tècniques i instruments d'avaluació a diferents situacions lúdiques, tenint en compte, entre altres, criteris de fiabilitat, validesa, utilitat i practicitat per als usuaris de la informació.",
+                        "d": "S'ha triat i aplicat la tècnica adequada segons la finalitat del registre.",
+                        "e": "S'han extret les conclusions i s'han explicat les conseqüències que se'n deriven per a l'ajust o la modificació del projecte.",
+                        "f": "S'ha valorat l'ús de les noves tecnologies com a font d'informació.",
+                        "g": "S'han identificat les adaptacions que requerix el joc en un supòsit pràctic d'observació d'activitat lúdica."
                     }
                 }
             },
@@ -409,38 +433,38 @@
             "creditos": "10",
             "ResultadosAprendizaje": {
                 "RA01": {
-                    "Resultado": "Planifica estratègies i activitats favorecedores del desenvolupament de l'expressió i comunicació analitzant les característiques evolutives.",
+                    "Resultado": "Planifica estratègies i activitats afavoridores del desenvolupament de l'expressió i la comunicació relacionant-les amb les característiques individuals i del grup al qual van dirigides.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament de l'expressió i la comunicació en els xiquets i xiquetes.",
-                        "b": "S'han formulat objectius que afavorisquen el desenvolupament de l'expressió i la comunicació.",
-                        "c": "S'han seleccionat continguts d'acord amb els objectius i les característiques del grup.",
-                        "d": "S'han identificat estratègies metodològiques afavoridores del desenvolupament de l'expressió i la comunicació.",
-                        "e": "S'han planificat activitats afavoridores del desenvolupament de l'expressió i la comunicació.",
-                        "f": "S'han establert criteris i procediments d'avaluació.",
+                        "a": "S'han identificat les característiques dels diferents tipus d'expressió en funció de l'edat dels destinataris.",
+                        "b": "S'han analitzat les teories sobre la connexió i la relació entre llenguatge i pensament en xiquets i xiquetes de 0 a 6 anys.",
+                        "c": "S'han formulat objectius afavoridors del desenvolupament de l'expressió i la comunicació d'acord amb les característiques evolutives dels xiquets i xiquetes.",
+                        "d": "S'han proposat activitats afavoridores del desenvolupament de l'expressió i la comunicació apropiades a les característiques evolutives dels xiquets i xiquetes.",
+                        "e": "S'han definit espais afavoridors del desenvolupament de l'expressió i la comunicació adequant-se a les característiques evolutives dels xiquets i xiquetes.",
+                        "f": "S'ha establit una distribució temporal de les activitats afavoridores del desenvolupament de l'expressió i la comunicació per a adaptar-se a les característiques evolutives dels xiquets i xiquetes.",
                         "g": "S'han fet propostes creatives en el disseny d'activitats per a l'expressió i la comunicació infantil",
                         "h": "S'ha valorat l'expressió com element essencial per a l'observació del desenvolupament infantil"
                     }
                 },
                 "RA02": {
-                    "Resultado": "Selecciona els recursos d'expressió i comunicació analitzant les característiques del grup i el context educatiu.",
+                    "Resultado": "Selecciona recursos d'expressió i comunicació dirigits als xiquets i xiquetes, relacionant-ne les característiques amb el moment evolutiu dels destinataris.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els recursos d'expressió i comunicació adequats a cada edat.",
-                        "b": "S'han aplicat criteris de selecció de recursos segons els objectius de la intervenció.",
-                        "c": "S'han seleccionat recursos adaptats a les característiques del grup.",
-                        "d": "S'han elaborat recursos per a afavorir l'expressió i la comunicació.",
-                        "e": "S'ha valorat la importància d'adaptar els recursos a les necessitats individuals.",
+                        "a": "S'han identificat els recursos de les diferents formes d'expressió i comunicació dirigits a la població infantil.",
+                        "b": "S'han identificat les característiques del recurs.",
+                        "c": "S'han justificat les possibilitats didàctiques i el valor educatiu dels recursos seleccionats.",
+                        "d": "S'han descrit les normes de seguretat aplicables a cada recurs.",
+                        "e": "S'han definit els criteris rellevants que permeten seleccionar cada recurs.",
                         "f": "S'han relacionat el moment evolutiu dels xiquets i xiquetes amb les característiques del recurs seleccionat",
                         "g": "S'ha valorat la importància d'adequar els recursos a les característiques evolutives dels xiquets i xiquetes"
                     }
                 },
                 "RA03": {
-                    "Resultado": "Implementa estratègies i activitats que afavorisquen el desenvolupament de l'expressió oral, escrita, plàstica i musical, relacionant-les amb els objectius de la intervenció.",
+                    "Resultado": "Implementa estratègies i activitats afavoridores del desenvolupament de l'expressió oral, relacionant-les amb els objectius previstos.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han aplicat estratègies metodològiques afavoridores del desenvolupament de l'expressió oral.",
-                        "b": "S'han realitzat activitats que afavorisquen l'accés a la lectura i l'escriptura.",
-                        "c": "S'han emprat tècniques i recursos plàstics adequats a l'edat.",
-                        "d": "S'han aplicat activitats que afavorisquen el desenvolupament de l'expressió musical i corporal.",
-                        "e": "S'ha valorat la importància de l'expressió per al desenvolupament integral.",
+                        "a": "S'han organitzat els espais en funció de l'activitat i de les característiques del grup.",
+                        "b": "S'han realitzat les activitats de desenvolupament de l'expressió oral ajustant-se a la planificació temporal.",
+                        "c": "S'han preparat els recursos materials propis de l'activitat.",
+                        "d": "S'han elaborat materials que potencien l'adquisició i el desenvolupament de l'expressió oral en xiquets i xiquetes.",
+                        "e": "S'han respectat els ritmes i les necessitats individuals en el desenvolupament de l'activitat.",
                         "f": "S'han identificat els principals trastorns i alteracions en el desenvolupament de l'expressió oral",
                         "g": "S'han seleccionat estratègies d'intervenció promotores d'un clima d'afecte i confiança",
                         "h": "S'ha valorat la importància de respectar la llengua materna dels xiquets i xiquetes",
@@ -449,13 +473,13 @@
                     }
                 },
                 "RA04": {
-                    "Resultado": "Implementa estratègies i activitats que afavorisquen el desenvolupament de l'expressió logicomatemàtica, relacionant-les amb els objectius de la intervenció.",
+                    "Resultado": "Implementa activitats afavoridores del desenvolupament de l'expressió plàstica, gràfica, rítmica i musical, logicomatemàtica i corporal relacionant-les amb els objectius previstos i amb les estratègies i els recursos apropiats.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del pensament logicomatemàtic en l'etapa infantil.",
-                        "b": "S'han seleccionat activitats que afavorisquen el desenvolupament logicomatemàtic.",
-                        "c": "S'han emprat recursos adequats al desenvolupament logicomatemàtic.",
-                        "d": "S'han aplicat estratègies metodològiques afavoridores del pensament logicomatemàtic.",
-                        "e": "S'ha valorat la importància de l'experiència directa en l'aprenentatge logicomatemàtic.",
+                        "a": "S'han organitzat els espais en funció de l'activitat i de les característiques del grup.",
+                        "b": "S'han realitzat les activitats ajustant-se a la planificació temporal.",
+                        "c": "S'han preparat els recursos materials propis de l'activitat.",
+                        "d": "S'han elaborat materials que potencien l'adquisició i el desenvolupament de l'expressió plàstica, gràfica, rítmica i musical i corporal en la infància.",
+                        "e": "S'han respectat els ritmes i les necessitats individuals.",
                         "f": "S'han seleccionat estratègies d'intervenció promotores d'un clima d'afecte i confiança",
                         "g": "S'ha valorat la coherència de la realització de les activitats amb la planificació",
                         "h": "S'ha respost davant les contingències",
@@ -464,14 +488,14 @@
                     }
                 },
                 "RA05": {
-                    "Resultado": "Avalua el procés i el resultat de les intervencions relacionades amb l'expressió i la comunicació seleccionant els instruments adequats.",
+                    "Resultado": "Avalua el procés i el resultat de la intervenció realitzada en l'àmbit de l'expressió i la comunicació argumentant les variables rellevants i els instruments d'avaluació.",
                     "CriteriosEvaluacion": {
                         "a": "S'han seleccionat els indicadors d'avaluació.",
-                        "b": "S'han elaborat instruments d'avaluació.",
-                        "c": "S'han aplicat els instruments d'avaluació.",
-                        "d": "S'han interpretat les dades obtingudes.",
-                        "e": "S'han proposat modificacions en funció dels resultats.",
-                        "f": "S'ha valorat la importància de l'avaluació per a la millora de la intervenció.",
+                        "b": "S'ha seleccionat l'instrument d'avaluació apropiat a les característiques individuals i a l'edat del xiquet o xiqueta.",
+                        "c": "S'han elaborat instruments d'observació per al seguiment de l'evolució expressiva i comunicativa dels xiquets i de les xiquetes.",
+                        "d": "S'ha aplicat l'instrument d'avaluació seguint el procediment correcte.",
+                        "e": "S'han registrat les dades derivades de l'avaluació en el suport establit.",
+                        "f": "S'ha interpretat la informació recollida del procés d'avaluació.",
                         "g": "S'han identificat les situacions en les que es necessari la col·laboració d'altres professionals",
                         "h": "S'ha elaborat la documentació dirigida a les famílies i altres professionals",
                         "i": "S'han identificat les possibles causes d'una intervenció no adequada"
@@ -505,14 +529,14 @@
             "creditos": "9.5",
             "ResultadosAprendizaje": {
                 "RA01": {
-                    "Resultado": "Planifica estratègies i activitats favorecedores del desenvolupament sensorial, analitzant les característiques evolutives.",
+                    "Resultado": "Planifica estratègies, activitats i recursos d'intervenció en l'àmbit sensorial, analitzant les teories explicatives i les característiques específiques del grup al qual van dirigits.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament sensorial en els xiquets i xiquetes.",
-                        "b": "S'han formulat objectius que afavorisquen el desenvolupament sensorial.",
-                        "c": "S'han seleccionat continguts d'acord amb els objectius i les característiques del grup.",
-                        "d": "S'han identificat estratègies metodològiques afavoridores del desenvolupament sensorial.",
-                        "e": "S'han planificat activitats afavoridores del desenvolupament sensorial.",
-                        "f": "S'han establert criteris i procediments d'avaluació.",
+                        "a": "S'han identificat les teories explicatives de l'àmbit sensorial.",
+                        "b": "S'han identificat les característiques evolutives en l'àmbit sensorial dels destinataris en funció de la seua edat.",
+                        "c": "S'han identificat les principals alteracions i trastorns del desenvolupament sensorial.",
+                        "d": "S'han formulat objectius d'acord amb les característiques evolutives en l'àmbit sensorial dels destinataris en funció de la seua edat.",
+                        "e": "S'han proposat activitats apropiades a les característiques evolutives en l'àmbit sensorial dels destinataris en funció de la seua edat.",
+                        "f": "S'han seleccionat recursos apropiats a les característiques evolutives en l'àmbit sensorial dels destinataris en funció de la seua edat.",
                         "g": "S'han organitzat els espais adequant-se a les característiques evolutives en l'àmbit sensorial dels destinataris en funció de l'edat dels mateixos.",
                         "h": "S'ha establert una distribució temporal de les activitats per adaptar-se a les característiques evolutives en l'àmbit sensorial dels destinataris en funció de l'edat dels mateixos.",
                         "i": "S'han realitzat propostes creatives e innovadores en la planificació de la intervenció.",
@@ -520,54 +544,54 @@
                     }
                 },
                 "RA02": {
-                    "Resultado": "Planifica estratègies i activitats favorecedores del desenvolupament motor, analitzant les característiques evolutives.",
+                    "Resultado": "Planifica estratègies, activitats i recursos d'intervenció en l'àmbit motor, relacionant-los amb les característiques individuals i del grup al qual van dirigits.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament motor en els xiquets i xiquetes.",
-                        "b": "S'han formulat objectius que afavorisquen el desenvolupament motor.",
-                        "c": "S'han seleccionat continguts d'acord amb els objectius i les característiques del grup.",
-                        "d": "S'han identificat estratègies metodològiques afavoridores del desenvolupament motor.",
-                        "e": "S'han planificat activitats afavoridores del desenvolupament motor.",
-                        "f": "S'han establert criteris i procediments d'avaluació.",
+                        "a": "S'han identificat les característiques motrius dels destinataris en funció de la seua edat.",
+                        "b": "S'han formulat objectius d'acord amb les característiques motrius dels destinataris en funció de la seua edat.",
+                        "c": "S'han proposat activitats apropiades a les característiques motrius dels destinataris en funció de la seua edat.",
+                        "d": "S'han seleccionat recursos apropiats a les característiques motrius dels destinataris en funció de la seua edat.",
+                        "e": "S'han organitzat els espais adequant-se a les característiques motrius dels destinataris en funció de la seua edat.",
+                        "f": "S'ha establit una distribució temporal de les activitats per a adaptar-se a les característiques motrius dels destinataris en funció de la seua edat.",
                         "g": "S'han seleccionat les ajudes tècniques que es necessari utilitzar.",
                         "h": "S'ha valorat la importància del desenrotllament motor en l'adquisició de l'autonomia personal."
                     }
                 },
                 "RA03": {
-                    "Resultado": "Planifica estratègies i activitats favorecedores del desenvolupament cognitiu, analitzant les característiques evolutives.",
+                    "Resultado": "Planifica estratègies, activitats i recursos d'intervenció en l'àmbit cognitiu, relacionant-los amb les teories del desenvolupament cognitiu i amb les característiques individuals i del grup al qual van dirigits.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament cognitiu en els xiquets i xiquetes.",
-                        "b": "S'han formulat objectius que afavorisquen el desenvolupament cognitiu.",
-                        "c": "S'han seleccionat continguts d'acord amb els objectius i les característiques del grup.",
-                        "d": "S'han identificat estratègies metodològiques afavoridores del desenvolupament cognitiu.",
-                        "e": "S'han planificat activitats afavoridores del desenvolupament cognitiu.",
-                        "f": "S'han establert criteris i procediments d'avaluació.",
-                        "g": "S'han organitzat els espais adequant-se a les característiques evolutives en l’àmbit cognitiu dels destinataris en funció de l’edat dels mateixos.",
+                        "a": "S'han identificat les diferents teories explicatives del desenvolupament cognitiu.",
+                        "b": "S'han identificat les característiques evolutives en l'àmbit cognitiu dels destinataris en funció de la seua edat.",
+                        "c": "S'han identificat els principals trastorns i alteracions en el desenvolupament cognitiu.",
+                        "d": "S'han formulat objectius d'acord amb les característiques evolutives en l'àmbit cognitiu dels xiquets i xiquetes.",
+                        "e": "S'han proposat activitats apropiades a les característiques evolutives en l'àmbit cognitiu dels xiquets i xiquetes.",
+                        "f": "S'han seleccionat recursos apropiats a les característiques evolutives en l'àmbit cognitiu dels xiquets i xiquetes.",
+                        "g": "S'han definit els espais adequant-se a les característiques evolutives en l'àmbit cognitiu dels xiquets i xiquetes.",
                         "h": "S'ha establert una distribució temporal de les activitats per adaptar-se a les característiques evolutives dels xiquets i xiquetes.",
                         "i": "S'han fet propostes creatives e innovadores."
                     }
                 },
                 "RA04": {
-                    "Resultado": "Planifica estratègies i activitats psicomotrius, analitzant les característiques evolutives.",
+                    "Resultado": "Planifica estratègies, activitats i recursos psicomotors, relacionant-los amb els principis de l'educació psicomotriu i amb les característiques individuals i del grup al qual van dirigits.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament psicomotor en els xiquets i xiquetes.",
-                        "b": "S'han formulat objectius que afavorisquen el desenvolupament psicomotor.",
-                        "c": "S'han seleccionat continguts d'acord amb els objectius i les característiques del grup.",
-                        "d": "S'han identificat estratègies metodològiques afavoridores del desenvolupament psicomotor.",
-                        "e": "S'han planificat activitats psicomotrius.",
-                        "f": "S'han establert criteris i procediments d'avaluació.",
+                        "a": "S'han identificat els principis de l'educació psicomotriu.",
+                        "b": "S'han identificat les característiques psicomotrius dels destinataris en funció de la seua edat.",
+                        "c": "S'han formulat objectius d'acord amb les característiques psicomotrius dels destinataris en funció de la seua edat.",
+                        "d": "S'han seleccionat activitats apropiades a les característiques psicomotrius dels destinataris en funció de la seua edat.",
+                        "e": "S'han seleccionat recursos apropiats a les característiques psicomotrius dels destinataris en funció de la seua edat.",
+                        "f": "S'han organitzat els espais adequant-se a les característiques psicomotrius dels destinataris en funció de la seua edat.",
                         "g": "S'ha establert una distribució temporal de les activitats per adaptar-se a les característiques psicomotrius dels destinataris en funció de l'edat dels mateixos.",
                         "h": "S'han identificat els principis i àmbits d'actuació de l'educació psicomotriu.",
                         "i": "S'ha valorat la importància de la psicomotricitat en l'educació infantil."
                     }
                 },
                 "RA05": {
-                    "Resultado": "Implementa estratègies i activitats relacionades amb el desenvolupament sensorial, motor, cognitiu i psicomotor.",
+                    "Resultado": "Implementa activitats d'intervenció en l'àmbit sensorial, motor, cognitiu i psicomotor, relacionant-les amb els objectius previstos i amb les característiques dels xiquets i xiquetes.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han aplicat estratègies metodològiques afavoridores del desenvolupament.",
-                        "b": "S'han emprat recursos adequats a cada activitat.",
-                        "c": "S'ha adaptat la intervenció a les característiques individuals.",
-                        "d": "S'ha creat un clima afavoridor del desenvolupament.",
-                        "e": "S'ha valorat la importància de respectar els ritmes individuals.",
+                        "a": "S'han descrit les principals dificultats que poden sorgir en la realització de les activitats.",
+                        "b": "S'han organitzat els espais en funció de l'activitat i de les característiques del grup.",
+                        "c": "S'han preparat els recursos materials propis de l'activitat.",
+                        "d": "S'han realitzat les activitats ajustant-se a la planificació temporal.",
+                        "e": "S'han respectat els ritmes i les necessitats individuals en el desenvolupament de l'activitat.",
                         "f": "S'han seleccionat estratègies d'intervenció promotores d'un clima d'afecte i confiança.",
                         "g": "S'ha valorat la coherència de la implantació de les activitats amb la planificació.",
                         "h": "S'ha donat resposta a les contingències.",
@@ -575,14 +599,14 @@
                     }
                 },
                 "RA06": {
-                    "Resultado": "Avalua el procés i el resultat de la intervenció en relació amb el desenvolupament sensorial, motor, cognitiu i psicomotor.",
+                    "Resultado": "Avalua el procés i el resultat de la intervenció realitzada en l'àmbit sensorial, motor, cognitiu i psicomotor, argumentant les variables rellevants en el procés i justificant-ne l'elecció.",
                     "CriteriosEvaluacion": {
                         "a": "S'han seleccionat els indicadors d'avaluació.",
-                        "b": "S'han elaborat instruments d'avaluació.",
-                        "c": "S'han aplicat instruments d'avaluació.",
-                        "d": "S'han interpretat les dades obtingudes.",
-                        "e": "S'han proposat modificacions en funció dels resultats.",
-                        "f": "S'ha valorat la importància de l'avaluació per a la millora de la intervenció.",
+                        "b": "S'ha seleccionat l'instrument d'avaluació apropiat a les característiques individuals i a l'edat del xiquet o xiqueta.",
+                        "c": "S'ha aplicat l'instrument d'avaluació seguint el procediment correcte.",
+                        "d": "S'han registrat les dades extretes del procés d'avaluació en el suport establit.",
+                        "e": "S'ha interpretat la informació recollida del procés d'avaluació de la intervenció.",
+                        "f": "S'han identificat les situacions en què és necessària la col·laboració d'altres professionals.",
                         "g": "S'han identificat les possibles causes d'una intervenció no adequada.",
                         "h": "S'ha ajustat l'actuació i actitud del professional a la pauta prevista."
                     }
@@ -616,13 +640,13 @@
             "creditos": "8.5",
             "ResultadosAprendizaje": {
                 "RA01": {
-                    "Resultado": "Planifica la intervenció en l'àmbit del desenvolupament afectiu, analitzant les característiques evolutives i les necessitats del grup.",
+                    "Resultado": "Planifica intervencions per a afavorir el desenvolupament afectiu dels xiquets i xiquetes analitzant les teories explicatives i les característiques individuals i del grup al qual van dirigides.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament afectiu en els xiquets i xiquetes.",
-                        "b": "S'han identificat els principals conflictes relacionats amb l'afectivitat infantil.",
-                        "c": "S'ha valorat el paper de l'escola i de l'educador o educadora en el desenvolupament afectiu.",
-                        "d": "S'ha planificat el període d'adaptació.",
-                        "e": "S'han dissenyat estratègies educatives que afavorisquen el desenvolupament afectiu.",
+                        "a": "S'han identificat les diferents concepcions teòriques sobre el desenvolupament afectiu dels xiquets i xiquetes.",
+                        "b": "S'han descrit les principals característiques de l'afectivitat infantil, la seua evolució i els trastorns més freqüents.",
+                        "c": "S'ha valorat la importància de l'aferrament en el desenvolupament integral dels xiquets i xiquetes.",
+                        "d": "S'han identificat i considerat les variables rellevants per al disseny de la intervenció.",
+                        "e": "S'han formulat objectius pertinents a les característiques evolutives dels xiquets i xiquetes.",
                         "f": "S'han proposat activitats, recursos i estratègies coherents amb els objectius i les característiques dels xiquets i les xiquetes.",
                         "g": "S'han descrit estratègies adequades per a organitzar el període d'adaptació.",
                         "h": "S'han proposat activitats afavoridores del desenvolupament de la identitat personal i d'una autoimatge positiva",
@@ -631,14 +655,14 @@
                     }
                 },
                 "RA02": {
-                    "Resultado": "Planifica la intervenció en l'àmbit del desenvolupament social, analitzant les característiques evolutives i les necessitats del grup.",
+                    "Resultado": "Planifica intervencions per a afavorir el desenvolupament social dels xiquets i xiquetes relacionant-les amb els factors que hi influïxen i amb les característiques individuals i del grup al qual van dirigides.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques del desenvolupament social en els xiquets i xiquetes.",
-                        "b": "S'han identificat els principals conflictes relacionats amb el desenvolupament social.",
-                        "c": "S'ha valorat el paper de l'escola i de l'educador o educadora en el desenvolupament social.",
-                        "d": "S'han dissenyat activitats i estratègies per al desenvolupament social.",
-                        "e": "S'han analitzat programes d'habilitats socials dirigits a xiquets i xiquetes de 0 a 6 anys.",
-                        "f": "S'ha valorat la importància de l'educació incidental.",
+                        "a": "S'han identificat les diferents teories sobre el desenvolupament social dels xiquets i xiquetes.",
+                        "b": "S'han identificat i descrit les funcions dels agents socials que intervenen en el desenvolupament social.",
+                        "c": "S'han descrit les principals pautes evolutives en el desenvolupament social: afectivitat, evolució, aferrament, trastorns.",
+                        "d": "S'han identificat i considerat les variables socials rellevants per al disseny de la intervenció.",
+                        "e": "S'han formulat objectius d'acord amb les característiques evolutives dels xiquets i xiquetes en l'àmbit social.",
+                        "f": "S'han proposat activitats, recursos i estratègies coherents amb els objectius i les característiques dels xiquets i xiquetes.",
                         "g": "S'han proposat activitats i estratègies per al desenvolupament d'habilitats socials en els xiquets i xiquetes.",
                         "h": "S'han proposat activitats afavoridores de l'observació i exploració de l'entorn social.",
                         "i": "S'ha valorat el paper de l'escola en la socialització dels xiquets i xiquetes.",
@@ -646,24 +670,24 @@
                     }
                 },
                 "RA03": {
-                    "Resultado": "Planifica la intervenció en l'àmbit del desenvolupament en valors, analitzant les característiques evolutives i les necessitats del grup.",
+                    "Resultado": "Planifica intervencions per a afavorir el desenvolupament en valors dels xiquets i xiquetes, relacionant-les amb les teories explicatives i les característiques individuals i del grup al qual van dirigides.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat les característiques de l'evolució de la moralitat infantil.",
-                        "b": "S'han dissenyat programes, activitats i estratègies per a l'educació en valors.",
-                        "c": "S'ha valorat la importància d'una formació adequada del judici moral.",
+                        "a": "S'han identificat les diferents concepcions teòriques sobre el desenvolupament en valors dels xiquets i xiquetes.",
+                        "b": "S'han descrit les característiques i l'evolució de la moralitat infantil.",
+                        "c": "S'han identificat i considerat les variables socials rellevants per al disseny de la intervenció.",
                         "d": "S'han formulat objectius d'acord a les característiques evolutives dels xiquets i xiquetes.",
-                        "e": "S'han proposat activitats, recursos i estratègies evolutives dels xiquets i xiquetes.",
+                        "e": "S'han proposat activitats, recursos i estratègies coherents amb els objectius i les característiques evolutives dels xiquets i xiquetes.",
                         "f": "S'han proposat programes i activitats d'educació en valors afavoridors del desenvolupament integral.",
                         "g": "S'ha valorat l'actitud de les persones adultes en la interiorització de valors i normes en els xiquets i xiquetes de 0 a 6 anys."
                     }
                 },
                 "RA04": {
-                    "Resultado": "Planifica la intervenció en l'àmbit del desenvolupament sexual, analitzant les característiques evolutives i les necessitats del grup.",
+                    "Resultado": "Planifica intervencions per a afavorir el desenvolupament sexual dels xiquets i xiquetes, analitzant les característiques evolutives de la sexualitat infantil i la influència dels estereotips socials.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han analitzat les característiques del desenvolupament sexual en la infància.",
-                        "b": "S'han identificat els principals conflictes relacionats amb el desenvolupament sexual.",
-                        "c": "S'han dissenyat programes, activitats i estratègies per a l'educació sexual i la promoció d'igualtat.",
-                        "d": "S'ha valorat la influència dels estereotips en el desenvolupament sexual.",
+                        "a": "S'han identificat les diferents concepcions sobre el desenvolupament sexual dels xiquets i xiquetes.",
+                        "b": "S'han identificat i descrit els factors que influïxen en l'adquisició de la identitat sexual i de gènere.",
+                        "c": "S'han descrit les principals característiques de la sexualitat infantil.",
+                        "d": "S'ha valorat el paper dels estereotips en la construcció de la identitat sexual i de gènere. S'han formulat objectius adequats a les característiques evolutives dels xiquets i xiquetes.",
                         "e": "S'han proposat activitats, recursos i estratègies afavoridores del desenvolupament d'una identitat sexual.",
                         "f": "S'han identificat i descrit els elements contextuals, personals i organitzatius que afavorisquen o dificulten una pràctica pedagògica no sexista.",
                         "g": "S'han establert estratègies i mecanismes per a la detecció d'elements que dificulten la igualtat de gènere.",
@@ -673,13 +697,13 @@
                     }
                 },
                 "RA05": {
-                    "Resultado": "Programa estratègies en els trastorns de conducta i conflictes més freqüents, analitzant les característiques i aplicant les tècniques adequades.",
+                    "Resultado": "Programa estratègies d'intervenció en els trastorns habituals de conducta i en els conflictes en les relacions infantils, analitzant les teories i les tècniques de la modificació de conducta.",
                     "CriteriosEvaluacion": {
-                        "a": "S'han identificat els principals problemes de conducta en la infància.",
-                        "b": "S'han analitzat les tècniques i instruments per a l'avaluació i seguiment dels problemes de conducta habituals en la infància.",
-                        "c": "S'han dissenyat programes i estratègies per a la intervenció en problemes habituals de conducta.",
-                        "d": "S'han analitzat estratègies per a la prevenció i la resolució pacífica dels conflictes en l'aula.",
-                        "e": "S'ha valorat el conflicte com a mitjà per a l'aprenentatge i desenvolupament d'habilitats interpersonals en els xiquets i xiquetes.",
+                        "a": "S'han descrit les principals teories i tècniques de modificació de conducta.",
+                        "b": "S'han identificat els trastorns de conducta i els conflictes en les relacions interpersonals més freqüents en la infància.",
+                        "c": "S'han establit i descrit les diferents fases del programa d'intervenció.",
+                        "d": "S'ha valorat la importància del diagnòstic en la programació de la intervenció.",
+                        "e": "S'han establit les estratègies i els instruments per a identificar les causes dels trastorns de conducta o de relació.",
                         "f": "S'han identificat les tècniques d'intervenció més adequades a cada situació.",
                         "g": "S'han descrit estratègies de mediació que propicien el consens entre els xiquets.",
                         "h": "S'han descrit els instruments més adequats per al seguiment de la intervenció.",
